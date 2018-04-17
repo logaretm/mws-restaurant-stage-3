@@ -6,7 +6,6 @@
  */
 
 
-
 module.exports = {
   async index (req, res) {
     const conditions = {};
@@ -38,5 +37,27 @@ module.exports = {
         message: err.message
       });
     }
+  },
+
+  async update (req, res) {
+    // normalize input.
+    const input = {
+      name: req.body.name,
+      rating: Number(req.body.rating),
+      comments: req.body.comments
+    };
+
+    await Reviews.update({ id: req.params.id }, input);
+    const review = await Reviews.findOne({ id: req.params.id });
+
+    if (!review) {
+      return res.status(404).json({
+        message: 'Review not found'
+      });
+    }
+
+    res.json({
+      review
+    });
   }
 };

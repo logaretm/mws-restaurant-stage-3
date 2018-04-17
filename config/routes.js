@@ -52,5 +52,6 @@ module.exports.routes = {
 
 
   'GET /api/reviews': 'ReviewsController.index',
-  'POST /api/reviews': 'ReviewsController.create'
+  'POST /api/reviews': 'ReviewsController.create',
+  'PUT /api/reviews/:id': 'ReviewsController.update'
 };
