@@ -2,7 +2,7 @@
  * Common database helper functions.
  */
 
-class DBHelper {
+export default class DBHelper {
 
   /**
    * Database URL.
@@ -13,11 +13,33 @@ class DBHelper {
     return `http://localhost:${port}`;
   }
 
+  static makeQueryString (query) {
+    if (!query) {
+      return '';
+    }
+
+    let qs = '?';
+    if (query.cuisine) {
+      qs += `cuisine_type=${query.cuisine}`
+    }
+
+    if (query.cuisine && query.neighborhood) {
+      qs += `&`
+
+    }
+
+    if (query.neighborhood) {
+      qs += `neighborhood=${neighborhood}`
+    }
+
+    return qs;
+  }
+
   /**
    * Fetch all restaurants.
    */
-  static fetchRestaurants () {
-    return fetch(`${DBHelper.DATABASE_URL}/restaurants`).then(res => {
+  static fetchRestaurants (query) {
+    return fetch(`${DBHelper.DATABASE_URL}/restaurants/${DBHelper.makeQueryString(query)}`).then(res => {
       return res.json().then(json => json.restaurants);
     }).catch(err => {
       throw new Error(`Request failed. Returned status of ${err.status}`)
@@ -32,39 +54,6 @@ class DBHelper {
       return res.json().then(json => json.restaurant);
     }).catch(err => {
       throw new Error(`Request failed. Returned status of ${err.status}`);
-    });
-  }
-
-  /**
-   * Fetch restaurants by a cuisine type with proper error handling.
-   */
-  static fetchRestaurantByCuisine (cuisine) {
-    return fetch(`${DBHelper.DATABASE_URL}/restaurants?cuisine_type=${cuisine}`).then(res => {
-      return res.json().then(json => json.restaurants);
-    }).catch(err => {
-      throw new Error(`Request failed. Returned status of ${err.status}`)
-    });
-  }
-
-  /**
-   * Fetch restaurants by a neighborhood with proper error handling.
-   */
-  static fetchRestaurantByNeighborhood (neighborhood) {
-    return fetch(`${DBHelper.DATABASE_URL}/restaurants?neighborhood=${neighborhood}`).then(res => {
-      return res.json().then(json => json.restaurants);
-    }).catch(err => {
-      throw new Error(`Request failed. Returned status of ${err.status}`)
-    });
-  }
-
-  /**
-   * Fetch restaurants by a cuisine and a neighborhood with proper error handling.
-   */
-  static fetchRestaurantByCuisineAndNeighborhood (cuisine, neighborhood) {
-    return fetch(`${DBHelper.DATABASE_URL}/restaurants?neighborhood=${neighborhood}&cuisine_type=${cuisine}`).then(res => {
-      return res.json().then(json => json.restaurants);
-    }).catch(err => {
-      throw new Error(`Request failed. Returned status of ${err.status}`)
     });
   }
 
@@ -101,22 +90,18 @@ class DBHelper {
    * Restaurant image URL.
    */
   static imageUrlForRestaurant(restaurant) {
-    return (`/img/${restaurant.photograph}`);
+    return (`/img/${restaurant.photograph}.jpg`);
   }
 
   /**
    * Map marker for a restaurant.
    */
-  static mapMarkerForRestaurant(restaurant, map) {
-    const marker = new google.maps.Marker({
+  static createMarkerData(restaurant) {
+    return {
       position: restaurant.latlng,
       title: restaurant.name,
-      url: DBHelper.urlForRestaurant(restaurant),
-      map: map,
-      animation: google.maps.Animation.DROP
-    });
-
-    return marker;
+      url: DBHelper.urlForRestaurant(restaurant)
+    };
   }
 
 }
