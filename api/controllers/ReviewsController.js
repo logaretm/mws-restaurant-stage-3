@@ -16,5 +16,27 @@ module.exports = {
     res.json({
       reviews
     });
+  },
+
+  async create (req, res) {
+    try {
+      // normalize input.
+      const input = {
+        name: req.body.name,
+        restaurant_id: Number(req.body.restaurant_id),
+        rating: Number(req.body.rating),
+        comments: req.body.comments
+      };
+
+      const review = await Reviews.create(input);
+
+      res.json({
+        review
+      });
+    } catch (err) {
+      res.status(500).json({
+        message: err.message
+      });
+    }
   }
 };

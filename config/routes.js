@@ -49,5 +49,6 @@ module.exports.routes = {
   'GET /api/restaurants': 'RestaurantsController.index',
   'GET /api/restaurants/:id': 'RestaurantsController.show',
 
-  'GET /api/reviews': 'ReviewsController.index'
+  'GET /api/reviews': 'ReviewsController.index',
+  'POST /api/reviews': 'ReviewsController.create'
 };
