@@ -5,6 +5,8 @@ import DBHelper from './dbhelper';
 
 // static assets
 import '../manifest.webmanifest';
+import '../sw.js';
+
 
 new Vue({
   el: '#app',

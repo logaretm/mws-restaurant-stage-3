@@ -39,7 +39,7 @@ let config = {
       // js loaders
       {
         test: /\.js$/,
-        exclude: /node_modules/,
+        exclude: /(node_modules|sw\.js)/,
         use: {
           loader: 'babel-loader',
           options: {
@@ -65,6 +65,17 @@ let config = {
             loader: 'file-loader',
             options: {
               name: '[name].webmanifest'
+            }
+          }
+        ]
+      },
+      {
+        test: /sw\.js$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].js'
             }
           }
         ]
