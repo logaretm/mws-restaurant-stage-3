@@ -30,6 +30,11 @@ let config = {
   },
   module: {
     rules: [
+      {
+        test: /\.vue$/,
+        loader: 'vue-loader'
+      },
+
       // js loaders
       {
         test: /\.js$/,
