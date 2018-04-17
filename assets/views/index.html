@@ -14,37 +14,27 @@
 </head>
 
 <body>
-  <header>
-    <nav>
-      <h1><a href="/">Restaurant Reviews</a></h1>
-    </nav>
-  </header>
+  <div id="app">
+    <header>
+      <nav>
+        <h1>
+          <a href="/">Restaurant Reviews</a>
+        </h1>
+      </nav>
+    </header>
 
-  <main id="maincontent">
-    <section id="map-container">
-      <div id="map" role="application"></div>
-    </section>
-    <section>
-      <div class="filter-options">
-        <h2>Filter Results</h2>
-        <select id="neighborhoods-select" name="neighborhoods" onchange="updateRestaurants()" title="Neighborhood selector">
-          <option value="all">All Neighborhoods</option>
-        </select>
-        <select id="cuisines-select" name="cuisines" onchange="updateRestaurants()" title="Cuisines selector">
-          <option value="all">All Cuisines</option>
-        </select>
-      </div>
-      <ul class="restaurants__list"></ul>
-    </section>
-  </main>
-
-  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAlPcdc6Nq5JXLgjx0bpAdPwTA2cevTgIk&libraries=places&callback=initMap"></script>
+    <main id="maincontent">
+      <restaurants-page></restaurants-page>
+    </main>
 
 
-  <footer class="footer footer__full">
-    Copyright (c) 2017 <a href="/"><strong>Restaurant Reviews</strong></a> All Rights Reserved.
-  </footer>
-
+    <footer class="footer footer__full">
+      Copyright (c) 2017
+      <a href="/">
+        <strong>Restaurant Reviews</strong>
+      </a> All Rights Reserved.
+    </footer>
+  </div>
 </body>
 
 </html>
