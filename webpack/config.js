@@ -29,6 +29,11 @@ let config = {
     path: path.resolve(__dirname, '../public'),
     publicPath: '/'
   },
+  resolve: {
+    alias: {
+      'vue': 'vue/dist/vue.esm.js',
+    }
+  },
   module: {
     rules: [
       {
