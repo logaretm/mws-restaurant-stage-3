@@ -1,5 +1,5 @@
 {
-  "name": "Restaurant-Reviews",
+  "name": "restaurant-reviews",
   "private": true,
   "version": "0.0.0",
   "description": "a Sails application",
@@ -12,6 +12,7 @@
     "sails-disk": "~0.10.9"
   },
   "scripts": {
+    "dev": "nodemon server.js",
     "debug": "node debug app.js",
     "start": "node app.js"
   },
@@ -22,5 +23,8 @@
   },
   "author": "Brandy Lee Camacho",
   "linkedIn": "https://www.linkedin.com/in/brandycamacho/",
-  "email": "brandy@udacity.com"
+  "email": "brandy@udacity.com",
+  "devDependencies": {
+    "nodemon": "^1.17.3"
+  }
 }
