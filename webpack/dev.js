@@ -10,7 +10,7 @@ module.exports = {
         ]
       },
       {
-        test: /\.styl$/,
+        test: /\.(styl|stylus)$/,
         use: [
           'style-loader',
           'css-loader',

@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const { VueLoaderPlugin } = require('vue-loader')
 const merge = require('webpack-merge');
 
 const isProduction = process.env.NODE_ENV === 'production';
@@ -9,6 +10,7 @@ let config = {
   context: path.resolve(__dirname, '..'),
   entry: './assets/js/app',
   plugins: [
+    new VueLoaderPlugin(),
     new CleanWebpackPlugin(['public', 'views'], {
       root: path.resolve(__dirname, '..'),
       exclude: ['.gitignore'],
@@ -32,7 +34,8 @@ let config = {
   resolve: {
     alias: {
       'vue': 'vue/dist/vue.esm.js',
-    }
+    },
+    extensions: ['*', '.js', '.vue', '.json']
   },
   module: {
     rules: [
