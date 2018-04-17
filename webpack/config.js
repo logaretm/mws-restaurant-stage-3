@@ -6,21 +6,25 @@ const merge = require('webpack-merge');
 const isProduction = process.env.NODE_ENV === 'production';
 
 let config = {
-  entry: path.resolve(__dirname, '../resources/js/main',
+  context: path.resolve(__dirname, '..'),
+  entry: './resources/js/app',
   plugins: [
-    new CleanWebpackPlugin(['assets']),
+    new CleanWebpackPlugin(['../assets']),
     new HtmlWebpackPlugin({
       title: 'Restaurants Review',
-      filename: 'views/index.html'
+      filename: 'views/index.html',
+      template: 'resources/views/index.html'
     }),
     new HtmlWebpackPlugin({
       title: 'Restaurant Review',
-      filename: 'views/restaurant.html'
+      filename: 'views/restaurant.html',
+      template: 'resources/views/restaurant.html'
     })
   ],
   output: {
     filename: 'assets/js/[name].js',
-    path: path.resolve(__dirname)
+    path: path.resolve(__dirname, '..'),
+    publicPath: "/assets/",
   },
   module: {
     rules: [

@@ -1,4 +1,5 @@
 module.exports = {
+  mode: "development",
   module: {
     rules: [
       {
@@ -15,7 +16,13 @@ module.exports = {
           'css-loader',
           'stylus-loader'
         ]
+      },
+      {
+        test: /\.html$/,
+        use: [
+          'html-loader'
+        ]
       }
     ]
   }
-}
+};
