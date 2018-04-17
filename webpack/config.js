@@ -59,6 +59,17 @@ let config = {
         ]
       },
       {
+        test: /\.webmanifest$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].webmanifest'
+            }
+          }
+        ]
+      },
+      {
         test: /\.(woff|woff2|eot|ttf|otf)$/,
         use: [
           'file-loader'

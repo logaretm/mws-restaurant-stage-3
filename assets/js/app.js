@@ -3,6 +3,9 @@ import Vue from 'vue';
 import '../stylus/app.styl';
 import DBHelper from './dbhelper';
 
+// static assets
+import '../manifest.webmanifest';
+
 new Vue({
   el: '#app',
   created () {
