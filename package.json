@@ -16,6 +16,8 @@
   },
   "scripts": {
     "dev": "nodemon server.js",
+    "build": "webpack --config webpack/config.js",
+    "build:prod": "cross-env NODE_ENV=production webpack --config webpack/config.js",
     "debug": "node debug app.js",
     "start": "node app.js"
   },
@@ -32,8 +34,10 @@
     "@babel/preset-env": "^7.0.0-beta.44",
     "babel-loader": "^8.0.0-beta.2",
     "clean-webpack-plugin": "^0.1.19",
+    "cross-env": "^5.1.4",
     "css-loader": "^0.28.11",
     "file-loader": "^1.1.11",
+    "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
     "mini-css-extract-plugin": "^0.4.0",
     "nodemon": "^1.17.3",
