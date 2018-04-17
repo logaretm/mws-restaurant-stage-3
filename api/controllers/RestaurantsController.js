@@ -38,6 +38,11 @@ module.exports = {
    */
   async show (req, res) {
     const restaurant = await Restaurants.findOne({ id: req.params.id });
+    if (!restaurant) {
+      return res.status(404).json({
+        message: 'Restaurant not found'
+      });
+    }
 
     res.json({
       restaurant
