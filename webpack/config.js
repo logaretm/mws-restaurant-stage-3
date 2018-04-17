@@ -26,7 +26,7 @@ let config = {
   ],
   output: {
     filename: 'js/app.js',
-    path: path.resolve(__dirname, '../assets'),
+    path: path.resolve(__dirname, '../public'),
     publicPath: '/'
   },
   module: {
