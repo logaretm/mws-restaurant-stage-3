@@ -15,18 +15,19 @@ let config = {
     }),
     new HtmlWebpackPlugin({
       title: 'Restaurants Review',
-      filename: 'views/index.html',
+      filename: '../views/index.html',
       template: 'resources/views/index.html'
     }),
     new HtmlWebpackPlugin({
       title: 'Restaurant Review',
-      filename: 'views/restaurant.html',
+      filename: '../views/restaurant.html',
       template: 'resources/views/restaurant.html'
     })
   ],
   output: {
-    filename: 'assets/js/app.js',
-    path: path.resolve(__dirname, '..')
+    filename: 'js/app.js',
+    path: path.resolve(__dirname, '../assets'),
+    publicPath: '/assets/'
   },
   module: {
     rules: [
