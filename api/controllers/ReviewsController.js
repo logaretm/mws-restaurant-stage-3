@@ -47,9 +47,7 @@ module.exports = {
       comments: req.body.comments
     };
 
-    await Reviews.update({ id: req.params.id }, input);
-    const review = await Reviews.findOne({ id: req.params.id });
-
+    const [review] = await Reviews.update({ id: req.params.id }, input);
     if (!review) {
       return res.status(404).json({
         message: 'Review not found'
@@ -58,6 +56,15 @@ module.exports = {
 
     res.json({
       review
+    });
+  },
+
+  async destroy (req, res) {
+    const [review] = await Reviews.destroy({ id: req.params.id });
+
+    res.json({
+      review,
+      deleted: !!review
     });
   }
 };
