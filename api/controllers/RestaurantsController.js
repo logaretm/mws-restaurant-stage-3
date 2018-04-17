@@ -5,26 +5,15 @@
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
 
- /**
-  * @description Adds a value to an object if it exists on the sourceObject.
-  */
-function useCondition(condition, conditions, source) {
-  if (source && source[condition]) {
-    conditions[condition] = Casts.boolean(source[condition]);
-  }
-
-  return conditions;
-}
-
 module.exports = {
   /**
    * Returns a listing of restaurants that match the criteria if specified.
    */
   async index (req, res) {
     const conditions = {};
-    useCondition('is_favorite', conditions, req.query);
-    useCondition('neighborhood', conditions, req.query);
-    useCondition('cuisine_type', conditions, req.query);
+    Helpers.addProp('is_favorite', conditions, req.query);
+    Helpers.addProp('neighborhood', conditions, req.query);
+    Helpers.addProp('cuisine_type', conditions, req.query);
 
     const restaurants = await Restaurants.find(conditions);
 
