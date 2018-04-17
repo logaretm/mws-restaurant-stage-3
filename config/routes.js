@@ -46,5 +46,6 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  'GET /api/restaurants': 'RestaurantsController.index'
+  'GET /api/restaurants': 'RestaurantsController.index',
+  'GET /api/restaurants/:id': 'RestaurantsController.show',
 };
