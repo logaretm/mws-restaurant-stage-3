@@ -18,7 +18,7 @@ module.exports = {
       collection: 'reviews',
       via: 'restaurant'
     },
-    createdAt: true,
-    updatedAt: true,
+    createdAt: { type: 'datetime' },
+    updatedAt: { type: 'datetime' }
   }
 };

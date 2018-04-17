@@ -11,7 +11,7 @@ module.exports = {
     rating: { type: 'number', min: 0, max: 5 },
     restaurant_id: { type: 'number', required: true },
     restaurant: { model: 'restaurants', via: 'restaurant_id' },
-    createdAt: true,
-    updatedAt: true
+    createdAt: { type: 'datetime' },
+    updatedAt: { type: 'datetime' }
   }
 };
