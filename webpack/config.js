@@ -7,27 +7,27 @@ const isProduction = process.env.NODE_ENV === 'production';
 
 let config = {
   context: path.resolve(__dirname, '..'),
-  entry: './resources/js/app',
+  entry: './assets/js/app',
   plugins: [
-    new CleanWebpackPlugin(['assets', 'views'], {
+    new CleanWebpackPlugin(['public', 'views'], {
       root: path.resolve(__dirname, '..'),
       exclude: ['.gitignore'],
     }),
     new HtmlWebpackPlugin({
       title: 'Restaurants Review',
       filename: '../views/index.html',
-      template: 'resources/views/index.html'
+      template: 'assets/views/index.html'
     }),
     new HtmlWebpackPlugin({
       title: 'Restaurant Review',
       filename: '../views/restaurant.html',
-      template: 'resources/views/restaurant.html'
+      template: 'assets/views/restaurant.html'
     })
   ],
   output: {
     filename: 'js/app.js',
     path: path.resolve(__dirname, '../assets'),
-    publicPath: '/assets/'
+    publicPath: '/'
   },
   module: {
     rules: [
