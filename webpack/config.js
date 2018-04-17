@@ -22,9 +22,8 @@ let config = {
     })
   ],
   output: {
-    filename: 'assets/js/[name].js',
-    path: path.resolve(__dirname, '..'),
-    publicPath: "/assets/",
+    filename: 'assets/js/app.js',
+    path: path.resolve(__dirname, '..')
   },
   module: {
     rules: [
