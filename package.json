@@ -6,6 +6,7 @@
   "keywords": [],
   "dependencies": {
     "include-all": "^1.0.0",
+    "lodash": "^4.17.5",
     "rc": "1.0.1",
     "sails": "^0.12.13",
     "sails-disk": "~0.10.9"
