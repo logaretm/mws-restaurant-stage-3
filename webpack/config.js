@@ -9,7 +9,10 @@ let config = {
   context: path.resolve(__dirname, '..'),
   entry: './resources/js/app',
   plugins: [
-    new CleanWebpackPlugin(['../assets']),
+    new CleanWebpackPlugin(['assets', 'views'], {
+      root: path.resolve(__dirname, '..'),
+      exclude: ['.gitignore'],
+    }),
     new HtmlWebpackPlugin({
       title: 'Restaurants Review',
       filename: 'views/index.html',
