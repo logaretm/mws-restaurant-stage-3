@@ -1,3 +1,5 @@
+const lodash = require('lodash');
+
 /**
  * Global Variable Configuration
  * (sails.config.globals)
@@ -18,7 +20,7 @@ module.exports.globals = {
   *                                                                           *
   ****************************************************************************/
 
-	// _: true,
+	_: lodash,
 
   /****************************************************************************
   *                                                                           *

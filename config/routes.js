@@ -46,4 +46,5 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
+  'GET /api/restaurants': 'RestaurantsController.index'
 };
