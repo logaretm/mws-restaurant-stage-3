@@ -1,7 +1,15 @@
+import Vue from 'vue';
+
 import '../stylus/app.styl';
 import DBHelper from './dbhelper';
 
-navigator.serviceWorker.register('sw.js');
+new Vue({
+  el: '#app',
+  created () {
+    navigator.serviceWorker.register('sw.js');
+  }
+});
+
 
 let restaurants,
   neighborhoods,
