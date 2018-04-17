@@ -1,3 +1,6 @@
+import '../stylus/app.styl';
+import DBHelper from './dbhelper';
+
 navigator.serviceWorker.register('sw.js');
 
 let restaurants,
