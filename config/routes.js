@@ -54,5 +54,8 @@ module.exports.routes = {
   'GET /api/reviews': 'ReviewsController.index',
   'POST /api/reviews': 'ReviewsController.create',
   'PUT /api/reviews/:id': 'ReviewsController.update',
-  'DELETE /api/reviews/:id': 'ReviewsController.destroy'
+  'DELETE /api/reviews/:id': 'ReviewsController.destroy',
+
+  'GET /api/neighborhoods': 'NeighborhoodsController.index',
+  'GET /api/cuisines': 'CuisinesController.index'
 };
