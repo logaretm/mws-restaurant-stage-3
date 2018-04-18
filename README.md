@@ -10,9 +10,16 @@ curl "http://localhost:1337/restaurants/{3}"
 ````
 
 ## Architecture
-Local server
+
+### Local server
+
 - Node.js
 - Sails.js
+
+### App
+
+- Vue.js (Frontend Framework)
+- Webpack
 
 ## Contributors
 
