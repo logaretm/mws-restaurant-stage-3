@@ -5,6 +5,10 @@
 </template>
 
 <script>
+// singleton boolean for all instances, to prevent multiple loading of the script tag.
+// useful if this is gonna be a SPA later.
+let loaded = false;
+
 export default {
   name: 'google-map',
   props: {
@@ -25,8 +29,7 @@ export default {
     }
   },
   data: () => ({
-    markersInstances: [],
-    loaded: false
+    markersInstances: []
   }),
   methods: {
     initMap () {
@@ -35,7 +38,7 @@ export default {
         center: this.location,
         scrollwheel: false
       });
-      this.loaded = true;
+      loaded = true;
       this.updateMarkers();
     },
     loadScript () {
@@ -64,7 +67,7 @@ export default {
   watch: {
     markers () {
       // map isn't loaded yet.
-      if (!this.loaded) {
+      if (!loaded) {
         return this.$once('mapLoaded', () => {
           this.updateMarkers();
         });
@@ -74,10 +77,17 @@ export default {
     }
   },
   mounted () {
-    this.$bus.$once('initMap', () => {
+    const loadCallback = () => {
       this.initMap();
       this.$emit('mapLoaded');
-    });
+    };
+
+    if (loaded) {
+      loadCallback();
+      return;
+    }
+
+    this.$bus.$once('initMap', loadCallback);
     this.loadScript();
   }
 };
