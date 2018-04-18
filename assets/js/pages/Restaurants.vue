@@ -65,8 +65,7 @@ export default {
   mounted () {
     this.$store.populate().then(({ restaurants }) => {
       this.restaurants = restaurants;
-    }).then(() => {
-      return this.fetch();
+      this.fetch();
     });
   }
 };

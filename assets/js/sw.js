@@ -11,8 +11,13 @@ self.addEventListener('install', (e) => {
 });
 
 self.addEventListener('fetch', function (e) {
-  e.respondWith(fromCache(e.request));
-  e.waitUntil(fromNetwork(e.request)); // update the cache.
+  // if its an API call, get it from the network.
+  if (isAPI(e.request)) {
+    e.respondWith(fromNetwork(e.request));
+    return;
+  }
+
+  e.respondWith(fromCache(e.request)); // otherwise get it from cache.
 });
 
 // Delete old caches.
@@ -28,9 +33,9 @@ function precache () {
       './restaurant',
       './js/app.js',
       './css/app.css',
-      'img/icons/favicon-32x32.png',
-      'img/icons/favicon-16x16.png',
-
+      './img/icons/favicon-32x32.png',
+      './img/icons/favicon-16x16.png',
+      './favicon.icon',
     ]);
   });
 }
@@ -40,11 +45,6 @@ function isAPI (request) {
 }
 
 function fromCache (request) {
-  // bypass cache to network if its an API call.
-  if (isAPI(request)) {
-    return fromNetwork(request);
-  }
-
   return caches.open(`${CACHE_NAME}_${VERSION}`).then(function (cache) {
     if (/restaurant\.html/.test(request.url)) {
       request = new Request('/restaurant.html');
