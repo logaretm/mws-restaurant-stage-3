@@ -24,12 +24,20 @@ export default {
   }),
   methods: {
     fetch () {
-      this.$db.fetchNeighborhoods().then(ns => {
+      return Promise.all([
+        this.$db.fetchNeighborhoods(),
+        this.$db.fetchCuisines()
+      ]).then(([ns, cs]) => {
         this.neighborhoods = ns;
-      });
-
-      this.$db.fetchCuisines().then(cs => {
         this.cuisines = cs;
+      }).catch((err) => {
+        // If the user have some options then he was probably offline.
+        if (this.neighborhoods.length && this.cuisines.length) {
+          return;
+        }
+
+        // we've got a problem.
+        console.log(err.message);
       });
     }
   },
