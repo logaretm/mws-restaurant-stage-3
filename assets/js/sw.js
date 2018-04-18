@@ -18,6 +18,7 @@ self.addEventListener('fetch', function (e) {
   }
 
   e.respondWith(fromCache(e.request)); // otherwise get it from cache.
+  e.waitUntil(fromNetwork(e.request)); // update the cache.
 });
 
 // Delete old caches.
@@ -59,9 +60,10 @@ function fromCache (request) {
 function fromNetwork (request) {
   return caches.open(`${CACHE_NAME}_${VERSION}`).then(function (cache) {
     return fetch(request).then(function (response) {
-      const cloned = response.clone();
       // don't cache API calls
       if (response.ok && !isAPI(request)) {
+        const cloned = response.clone();
+
         return cache.put(request, cloned).then(() => {
           return response;
         });
