@@ -3,13 +3,13 @@ import Vue from 'vue';
 import RestaurantsPage from './pages/Restaurants';
 import RestaurantInfoPage from './pages/RestaurantInfo';
 import Breadcrumb from './components/Breadcrumb';
+import DBHelper from './dbhelper';
+import Store from './store';
 
 import '../stylus/app.styl';
-import DBHelper from './dbhelper';
 
 // static assets
 import '../manifest.webmanifest';
-import '../sw.js';
 
 // inject the db helper.
 Vue.prototype.$db = DBHelper;
@@ -18,6 +18,8 @@ Vue.prototype.$db = DBHelper;
 const eventBus = new Vue();
 
 Vue.prototype.$bus = eventBus;
+
+Vue.prototype.$store = Store;
 
 window.initMap = () => {
   eventBus.$emit('initMap');
