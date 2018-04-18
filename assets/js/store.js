@@ -23,7 +23,7 @@ export default class Store {
       idb.getCachedCollection('reviews'),
       idb.getCachedCollection('neighborhoods'),
       idb.getCachedCollection('cuisines'),
-    ]).then([restaurants, reviews, neighborhoods, cuisines] => {
+    ]).then(([restaurants, reviews, neighborhoods, cuisines]) => {
       state.restaurants = restaurants;
       state.reviews = reviews;
       state.neighborhoods = neighborhoods;
