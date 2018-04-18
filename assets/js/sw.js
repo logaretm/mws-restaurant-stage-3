@@ -54,13 +54,18 @@ function isAPI (request) {
   return request.url.includes(self.location.hostname) && /api/.test(request.url);
 }
 
+function normalizeRequest (request) {
+  // any request to a restaurant is probably cached.
+  if (/\/restaurant(\.html)?(\?id=\d+)?$/.test(request.url)) {
+    request = new Request('/restaurant');
+  }
+
+  return request;
+}
+
 function fromCache (request) {
   return caches.open(`${CACHE_NAME}_${VERSION}`).then(function (cache) {
-    if (/restaurant\.html/.test(request.url)) {
-      request = new Request('/restaurant.html');
-    }
-
-    return cache.match(request);
+    return cache.match(normalizeRequest(request));
   });
 }
 
@@ -71,7 +76,7 @@ function fromNetwork (request) {
       if (response.ok && !isAPI(request)) {
         const cloned = response.clone();
 
-        return cache.put(request, cloned).then(() => {
+        return cache.put(normalizeRequest(request), cloned).then(() => {
           return response;
         });
       }
