@@ -20,11 +20,10 @@ function precache () {
   return caches.open(`${CACHE_NAME}_${VERSION}`).then(function (cache) {
     return cache.addAll([
       './manifest.webmanifest',
-      './index',
+      './',
       './restaurant',
       './js/app.js',
-      './css/styles.css',
-      './data/restaurants.json'
+      './css/app.css'
     ]);
   });
 }
