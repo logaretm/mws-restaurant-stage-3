@@ -5,7 +5,7 @@
       <h2>{{ restaurant.name }}</h2>
       <p>{{ restaurant.neighborhood }}</p>
       <p>{{ restaurant.address }}</p>
-      <a :href="url">View Details</a>
+      <a :href="url" class="restaurant__details__link">View Details</a>
     </div>
   </li>
 </template>
@@ -88,6 +88,8 @@ export default {
   text-decoration: none
   text-transform: uppercase
 
+.restaurant__details__link:hover
+  color: #040e15
 
 @media only screen and (min-width: 1200px)
   .restaurant__card

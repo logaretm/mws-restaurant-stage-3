@@ -52,7 +52,7 @@ export default {
 .filter-options
   width: 100%
   height: fit-content
-  background-color: #3397DB
+  background-color: #16547d
   align-items: center
   display: flex
   flex-direction: row
