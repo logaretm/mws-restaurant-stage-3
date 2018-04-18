@@ -57,6 +57,17 @@ export default class DBHelper {
   }
 
   /**
+   * Fetch reviews by restaurant id.
+   */
+  static fetchReviewsByRestaurantId (id) {
+    return fetch(`${DBHelper.DATABASE_URL}/reviews?restaurant_id=${id}`).then(res => {
+      return res.json().then(json => json.reviews);
+    }).catch(err => {
+      throw new Error(`Request failed. Returned status of ${err.status}`);
+    });
+  }
+
+  /**
    * Fetch all neighborhoods with proper error handling.
    */
   static fetchNeighborhoods () {
