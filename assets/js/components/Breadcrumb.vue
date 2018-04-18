@@ -16,7 +16,7 @@ export default {
   }),
   methods: {
     isCurrent (url) {
-      return url && url.includes(window.location.href);
+      return url && window.location.href.includes(url);
     }
   },
   created () {
