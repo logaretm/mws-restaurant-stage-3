@@ -4,7 +4,7 @@
       <a href="/">Home</a>
     </li>
     <li v-for="item in items" :key="item.url">
-      <a href="item.url" :aria-current="isCurrent(item.url) ? 'page' : false">{{ item.title }}</a>
+      <a :href="item.url" :aria-current="isCurrent(item.url) ? 'page' : false">{{ item.name }}</a>
     </li>
   </ul>
 </template>
@@ -16,7 +16,7 @@ export default {
   }),
   methods: {
     isCurrent (url) {
-      return url && url.contains(window.location.href);
+      return url && url.includes(window.location.href);
     }
   },
   created () {
