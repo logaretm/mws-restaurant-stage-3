@@ -6,7 +6,7 @@
     <restaurant-filters @update="fetch"></restaurant-filters>
     <ul class="restaurants__list">
       <restaurant-card
-        v-for="restaurant in restaurants"
+        v-for="restaurant in filteredRestaurants"
         :key="restaurant.id"
         :restaurant="restaurant"
       ></restaurant-card>
@@ -29,28 +29,44 @@ export default {
   },
   data: () => ({
     restaurants: [],
-    markers: [],
+    filters: {
+      cuisine_type: null,
+      neighborhood: null
+    },
     center: {
       lat: 40.722216,
       lng: -73.987501
     }
   }),
-  methods: {
-    fetch ({ cuisine, neighborhood } = {}) {
-      return this.$db.fetchRestaurants({ cuisine, neighborhood }).then(restaurants => {
-        this.restaurants = restaurants;
-        this.createMarkers();
+  computed: {
+    filteredRestaurants () {
+      return this.restaurants.filter(restaurant => {
+        const matchesCuisine = this.filters.cuisine_type ? restaurant.cuisine_type === this.filters.cuisine_type : true;
+        const matchesNeighborhood = this.filters.neighborhood ? restaurant.neighborhood === this.filters.neighborhood : true;
+
+        return matchesCuisine && matchesNeighborhood;
       });
     },
-    createMarkers (restaurants) {
-      this.markers = this.restaurants.map(restaurant => {
+    markers () {
+      return this.restaurants.map(restaurant => {
         return this.$db.createMarkerData(restaurant);
       });
     }
   },
-  created () {
+  methods: {
+    fetch ({ cuisine, neighborhood } = {}) {
+      this.filters.cuisine_type = cuisine;
+      this.filters.neighborhood = neighborhood;
+      this.$db.fetchRestaurants({ cuisine, neighborhood }).then(restaurants => {
+        this.restaurants = restaurants;
+      });
+    }
+  },
+  mounted () {
     this.$store.populate().then(({ restaurants }) => {
       this.restaurants = restaurants;
+    }).then(() => {
+      return this.fetch();
     });
   }
 };

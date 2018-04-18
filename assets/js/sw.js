@@ -3,7 +3,11 @@ const CACHE_NAME = 'RESTAURANT_REVIEWS';
 
 self.addEventListener('install', (e) => {
   // Cleanup old caches then precache the assets.
-  e.waitUntil(cleanup().then(() => precache()));
+  e.waitUntil(
+    cleanup().then(() => precache()).catch(err => {
+      console.log(`Failed to precache assets ${err.message}`)
+    })
+  );
 });
 
 self.addEventListener('fetch', function (e) {
@@ -23,13 +27,16 @@ function precache () {
       './',
       './restaurant',
       './js/app.js',
-      './css/app.css'
+      './css/app.css',
+      'img/icons/favicon-32x32.png',
+      'img/icons/favicon-16x16.png',
+
     ]);
   });
 }
 
 function isAPI (request) {
-  return /api/.test(request.url);
+  return request.url.includes(self.location.hostname) && /api/.test(request.url);
 }
 
 function fromCache (request) {
@@ -68,22 +75,3 @@ function fromNetwork (request) {
   });
 }
 
-
-function cacheStaticMap (restaurant) {
-  const location = `${restaurant.latlng.lat},${restaurant.latlng.lng}`;
-  const params = `center=${location}&zoom=16&size=640x640&scale=2&markers=markerStyles|${location}`;
-
-  return fetch(`https://maps.googleapis.com/maps/api/staticmap?${params}`).then(response => {
-    return caches.open(`${CACHE_NAME}_${VERSION}`).then(cache => {
-      return cache.put(new Request(`/restaurant_${restaurant.id}_staticmap`), response);
-    });
-  }).catch(() => {
-    return;
-  });
-}
-
-// self.addEventListener('message', function (event) {
-//   if (event.data.action === 'staticmap') {
-//     event.waitUntil(cacheStaticMap(event.data.restaurant));
-//   }
-// });

@@ -10,6 +10,7 @@ import '../stylus/app.styl';
 
 // static assets
 import '../manifest.webmanifest';
+import './sw';
 
 // inject the db helper.
 Vue.prototype.$db = DBHelper;
