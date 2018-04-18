@@ -1,6 +1,6 @@
 <template>
   <section :class="{ 'side__map__container': layout === 'full' }">
-    <div ref="map" role="application" class="map"></div>
+    <div ref="map" role="application" :class="{ 'map': true, 'map__full': layout === 'full' }"></div>
   </section>
 </template>
 
@@ -138,7 +138,7 @@ export default {
     height: 300px
     position: absolute
 
-@media (max-width: 480px)
+@media only scrren and (max-width: 480px)
   .side__map__container
     flex-basis: 100%
     max-width: 100%
