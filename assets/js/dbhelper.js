@@ -1,3 +1,5 @@
+import idb from './idb';
+
 /**
  * Common database helper functions.
  */
@@ -39,7 +41,9 @@ export default class DBHelper {
    */
   static fetchRestaurants (query) {
     return fetch(`${DBHelper.DATABASE_URL}/restaurants/${DBHelper.makeQueryString(query)}`).then(res => {
-      return res.json().then(json => json.restaurants);
+      return res.json().then(json => idb.cacheCollection('restaurants', json.restaurants)).then(() => {
+        return json.restaurants;
+      });
     }).catch(err => {
       throw new Error(`Request failed. Returned status of ${err.status}`)
     });
@@ -50,7 +54,9 @@ export default class DBHelper {
    */
   static fetchRestaurantById (id) {
     return fetch(`${DBHelper.DATABASE_URL}/restaurants/${id}`).then(res => {
-      return res.json().then(json => json.restaurant);
+      return res.json().then(json => idb.cacheItem('restaurants', json.restaurant)).then(() => {
+        return json.restaurant;
+      });
     }).catch(err => {
       throw new Error(`Request failed. Returned status of ${err.status}`);
     });
@@ -61,7 +67,9 @@ export default class DBHelper {
    */
   static fetchReviewsByRestaurantId (id) {
     return fetch(`${DBHelper.DATABASE_URL}/reviews?restaurant_id=${id}`).then(res => {
-      return res.json().then(json => json.reviews);
+      return res.json().then(json => idb.cacheCollection('reviews', json.reviews)).then(() => {
+        return json.reviews;
+      });
     }).catch(err => {
       throw new Error(`Request failed. Returned status of ${err.status}`);
     });
@@ -72,7 +80,9 @@ export default class DBHelper {
    */
   static fetchNeighborhoods () {
     return fetch(`${DBHelper.DATABASE_URL}/neighborhoods`).then(res => {
-      return res.json().then(json => json.neighborhoods);
+      return res.json().then(json => idb.cacheCollection('neighborhoods', json.neighborhoods)).then(() => {
+        return json.neighborhoods;
+      });
     }).catch(err => {
       throw new Error(`Request failed. Returned status of ${err.status}`)
     });
@@ -83,7 +93,9 @@ export default class DBHelper {
    */
   static fetchCuisines () {
     return fetch(`${DBHelper.DATABASE_URL}/cuisines`).then(res => {
-      return res.json().then(json => json.cuisines);
+      return res.json().then(json => idb.cacheCollection('cuisines', json.cuisines)).then(() => {
+        return json.cuisines;
+      });
     }).catch(err => {
       throw new Error(`Request failed. Returned status of ${err.status}`)
     });
