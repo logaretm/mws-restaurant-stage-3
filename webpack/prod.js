@@ -16,7 +16,7 @@ module.exports = {
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: "assets/css/[name].css",
+      filename: "css/app.css",
       chunkFilename: "[id].css"
     })
   ],
@@ -30,7 +30,7 @@ module.exports = {
         ]
       },
       {
-        test: /\.styl$/,
+        test: /\.(styl|stylus)$/,
         use: [
           MiniCssExtractPlugin.loader,
           "css-loader",

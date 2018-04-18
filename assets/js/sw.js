@@ -20,10 +20,9 @@ function precache () {
   return caches.open(`${CACHE_NAME}_${VERSION}`).then(function (cache) {
     return cache.addAll([
       './manifest.webmanifest',
-      './index.html',
-      './restaurant.html',
-      './js/main.js',
-      './js/dbhelper.js',
+      './index',
+      './restaurant',
+      './js/app.js',
       './css/styles.css',
       './data/restaurants.json'
     ]);

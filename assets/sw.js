@@ -20,8 +20,8 @@ function precache () {
   return caches.open(`${CACHE_NAME}_${VERSION}`).then(function (cache) {
     return cache.addAll([
       './manifest.webmanifest',
-      './index.html',
-      './restaurant.html',
+      './',
+      './restaurant',
       './js/app.js',
       './css/app.css'
     ]);
@@ -31,7 +31,7 @@ function precache () {
 function fromCache (request) {
   return caches.open(`${CACHE_NAME}_${VERSION}`).then(function (cache) {
     if (/restaurant\.html/.test(request.url)) {
-      request = new Request('/restaurant.html');
+      request = new Request('/restaurant');
     }
 
     return cache.match(request).then(function (matching) {
