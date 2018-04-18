@@ -1,17 +1,17 @@
 <template>
   <div>
-    <google-map :location="center" :markers="[marker]" :zoom="16"></google-map>
-    <section class="restaurant__container">
+    <google-map v-if="restaurant" :location="restaurant.latlng" :markers="marker ? [marker] : []" :zoom="16" layout="full"></google-map>
+    <section class="restaurant__container" v-if="restaurant">
       <div class="restaurant__details">
         <h2 class="restaurant__name">{{ restaurant.name }}</h2>
-        <img class="restaurant__img" src="imageUrl" :alt="`${restaurant.name} Restaurant in ${restaurant.neighborhood}`">
+        <img class="restaurant__img" :src="imageUrl" :alt="`${restaurant.name} Restaurant in ${restaurant.neighborhood}`">
         <p class="restaurant__cuisine">{{ restaurant.cuisine_type }}</p>
         <p class="restaurant__address">{{ restaurant.address }}</p>
-        <table class="restaurant__hours" v-if="restaurant.operatingHours">
+        <table class="restaurant__hours" v-if="restaurant.operating_hours">
           <tbody>
-            <tr v-for="key in restaurant.operatingHours" :key="key">
+            <tr v-for="(key, idx) in restaurant.operating_hours" :key="idx">
               <td>{{ key }}</td>
-              <td>{{ restaurant.operatingHours[key] }}</td>
+              <td>{{ restaurant.operating_hours[key] }}</td>
             </tr>
           </tbody>
         </table>
@@ -31,16 +31,24 @@
 
 <script>
 import GoogleMap from '../components/Map';
+import Review from '../components/Review';
 
 export default {
   components: {
-    GoogleMap
+    GoogleMap,
+    Review
   },
+  data: () => ({
+    restaurant: null,
+    reviews: [],
+    marker: null
+  }),
   computed: {
     imageUrl () {
       return this.$db.imageUrlForRestaurant(this.restaurant);
     },
     restaurantId () {
+      let name = 'id';
       const url = window.location.href;
       name = name.replace(/[\[\]]/g, '\\$&');
       const regex = new RegExp(`[?&]${name}(=([^&#]*)|&|#|$)`);
@@ -63,9 +71,15 @@ export default {
       this.$db.fetchRestaurantById(this.restaurantId).then(restaurant => {
         this.restaurant = restaurant;
         this.marker = this.$db.createMarkerData(restaurant);
-        this.$bus.$emit('fillbreadCrumb', [restaurant]);
+        this.$bus.$emit('fillBreadcrumb', [{ name: restaurant.name, url: this.$db.urlForRestaurant(restaurant) }]);
+      });
+      this.$db.fetchReviewsByRestaurantId(this.restaurantId).then(reviews => {
+        this.reviews = reviews;
       });
     }
+  },
+  mounted () {
+    this.fetch();
   }
 };
 </script>

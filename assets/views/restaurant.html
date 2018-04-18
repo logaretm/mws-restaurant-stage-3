@@ -14,60 +14,28 @@
 </head>
 
 <body class="inside">
-  <!-- Beginning header -->
-  <header>
-    <!-- Beginning nav -->
-    <nav>
-      <h1><a href="/">Restaurant Reviews</a></h1>
-    </nav>
-    <!-- Beginning breadcrumb -->
-    <ul id="breadcrumb" aria-label=Breadcrumb>
-      <li><a href="/">Home</a></li>
-    </ul>
-    <!-- End breadcrumb -->
-    <!-- End nav -->
-  </header>
-  <!-- End header -->
+  <div id="app">
+    <header>
+      <nav>
+        <h1>
+          <a href="/">Restaurant Reviews</a>
+        </h1>
+      </nav>
+      <breadcrumb></breadcrumb>
+    </header>
 
-  <!-- Beginning main -->
-  <main id="maincontent" class="main__container">
-    <!-- Beginning map -->
-    <section class="side__map__container">
-      <div id="map" role="application"></div>
-    </section>
-    <!-- End map -->
+    <main id="maincontent" class="main__container">
+      <restaurant-info-page></restaurant-info-page>
+    </main>
 
-    <!-- Beginning restaurant -->
-    <section id="restaurant-container">
+    <footer class="footer">
+      Copyright (c) 2017
+      <a href="/">
+        <strong>Restaurant Reviews</strong>
+      </a> All Rights Reserved.
+    </footer>
 
-      <div class="restaurant__details">
-        <h2 id="restaurant-name"></h2>
-        <img id="restaurant-img">
-        <p id="restaurant-cuisine"></p>
-        <p id="restaurant-address"></p>
-        <table id="restaurant-hours"></table>
-      </div>
-
-      <div class="restaurant__reviews">
-        <ul class="reviews__list"></ul>
-      </div>
-
-    </section>
-    <!-- end restaurant -->
-
-  </main>
-  <!-- End main -->
-
-  <!-- Beginning footer -->
-  <footer class="footer">
-    Copyright (c) 2017 <a href="/"><strong>Restaurant Reviews</strong></a> All Rights Reserved.
-  </footer>
-  <!-- End footer -->
-
-
-  <!-- Google Maps -->
-  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDD8VtHBb810X4Bqy2w9CIo18Q06Y1wA4Q&libraries=places&callback=initMap"></script>
-
+  </div>
 </body>
 
 </html>

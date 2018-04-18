@@ -94,42 +94,6 @@ nav h1 a {
   letter-spacing: 10px;
   text-transform: uppercase;
 }
-#breadcrumb {
-  padding: 10px 40px 16px;
-  list-style: none;
-  background-color: #eee;
-  font-size: 17px;
-  margin: 0;
-  width: 50%;
-}
-
-/* Display list items side by side */
-#breadcrumb li {
-    display: inline;
-}
-
-/* Add a slash symbol (/) before/behind each list item */
-#breadcrumb li+li:before {
-    padding: 8px;
-    color: black;
-    content: "/\00a0";
-}
-
-/* Add a color to all links inside the list */
-#breadcrumb li a {
-    color: #0275d8;
-    text-decoration: none;
-}
-
-/* Add a color on mouse-over */
-#breadcrumb li a:hover {
-    color: #01447e;
-    text-decoration: underline;
-}
-
-#breadcrumb li a.is-active {
-  color: #000;
-}
 
 /* ====================== Restaurant Details ====================== */
 
@@ -151,159 +115,11 @@ nav h1 a {
   flex-direction: row;
 }
 
-#restaurant-name {
-  color: #f18200;
-  font-family: 'Open Sans', Arial,sans-serif;
-  font-size: 20pt;
-  font-weight: 200;
-  letter-spacing: 0;
-  margin: 15px 0 30px;
-  text-transform: uppercase;
-  line-height: 1.1;
-}
 
-#restaurant-img {
-  width: 100%;
-  display: block;
-  height: auto;
-}
-
-#restaurant-address {
-  font-size: 12pt;
-  margin: 10px 0px;
-}
-#restaurant-cuisine {
-  background-color: #333;
-  color: #ddd;
-  font-size: 12pt;
-  font-weight: 300;
-  letter-spacing: 10px;
-  margin: 10px 0 20px;
-  padding: 2px 0;
-  text-align: center;
-  text-transform: uppercase;
-  width: 100%;
-}
-
-#restaurant-container {
-  border-bottom: 1px solid #d9d9d9;
-  border-top: 1px solid #fff;
-  padding: 140px 40px 30px;
-  flex-basis: 50%;
-  max-width: 50%;
-}
-
-.reviews__list {
-  margin: 0;
-  padding: 0;
-  padding-bottom: 30px;
-  list-style-type: none;
-  width: 100%;
-}
-
-
-#restaurant-hours td {
-  color: #666;
-}
-
-.restaurant__reviews {
-  margin-top: 30px;
-  display: flex;
-  flex-direction: column;
-}
-
-.restaurant__reviews__title {
-  font-size: 18pt;
-  color: #f18200;
-  margin-top: 20px;
-  display: flex;
-  font-weight: 100;
-  flex-direction: column;
-}
-
-.review__item {
-  background-color: #fff;
-  border: 2px solid #f3f3f3;
-  display: block;
-  list-style-type: none;
-  margin: 0 0 30px;
-  position: relative;
-  width: 100%;
-  border-radius: 25px 0;
-}
-
-.review__item__header {
-  display: flex;
-  padding: 20px;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  background-color: #252831;
-  color: #fff;
-  border-radius: 25px 0 0;
-}
-
-.review__item__body {
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-}
-
-.review__item__rating {
-  background-color: #f18200;
-  color: #fff;
-  width: fit-content;
-  font-size: 16px;
-  border-radius: 2px;
-  padding: 5px 15px;
-}
-
-.review__item__header h2 {
-  margin: 0;
-  font-weight: 100;
-}
-
-.review__item__timestamp {
-  color: #959292;
-  font-size: 14px;
-  font-weight: bold;
-}
-
-.review__item__comments {
-  font-size: 12pt;
-}
-
-
-@media only screen and (min-width: 1200px) {
-  #restaurant-container {
-    flex-basis: 50%;
-    max-width: 50%;
-    margin-top: 0;
-  }
-}
-
-@media (min-width: 768px) and (max-width: 979px) {
-
-  #restaurant-container {
-    flex-basis: 50%;
-    max-width: 50%;
-    margin-top: 0;
-  }
-}
 
 @media only screen and (max-width: 767px) {
-  #breadcrumb {
-    width: 100%
-  }
-
   .main__container {
     flex-direction: column;
-  }
-
-  #restaurant-container {
-    flex-basis: 100%;
-    max-width: 100%;
-    margin-top: 300px;
   }
 
   .footer {
@@ -312,20 +128,9 @@ nav h1 a {
 }
 
 
-@media (max-width: 480px) {
-
-  #breadcrumb {
-    width: 100%;
-  }
-
+@media only screen and (max-width: 480px) {
   .main__container {
     flex-direction: column;
-  }
-
-  #restaurant-container {
-    flex-basis: 100%;
-    max-width: 100%;
-    margin-top: 300px;
   }
 
   .footer {
