@@ -1,11 +1,11 @@
 <template>
   <div class="filter-options">
     <h2>Filter Results</h2>
-    <select name="neighborhoods" title="Neighborhood selector" v-model="selected.neighborhood">
+    <select name="neighborhoods" title="Neighborhood selector" v-model="selectedNeighborhood">
       <option value="">All Neighborhoods</option>
       <option v-for="neighborhood in neighborhoods" :key="neighborhood" :value="neighborhood">{{ neighborhood }}</option>
     </select>
-    <select name="cuisines" title="Cuisines selector" v-model="selected.cuisine">
+    <select name="cuisines" title="Cuisines selector" v-model="selectedCuisine">
       <option value="">All Cuisines</option>
       <option v-for="cuisine in cuisines" :key="cuisine" :value="cuisine">{{ cuisine }}</option>
     </select>
@@ -19,10 +19,8 @@ export default {
   data: () => ({
     neighborhoods: [],
     cuisines: [],
-    selected: {
-      neighborhood: '',
-      cuisine: ''
-    }
+    selectedNeighborhood: '',
+    selectedCuisine: ''
   }),
   created () {
     this.$db.fetchNeighborhoods().then(ns => {
@@ -30,12 +28,21 @@ export default {
     });
 
     this.$db.fetchCuisines().then(cs => {
-      this.neighborhoods = cs;
+      this.cuisines = cs;
     });
   },
   watch: {
-    selected (value) {
-      this.$emit('update', value);
+    selectedNeighborhood (value) {
+      this.$emit('update', {
+        cuisine: this.selectedCuisine,
+        neighborhood: value
+      });
+    },
+    selectedCuisine (value) {
+      this.$emit('update', {
+        cuisine: value,
+        neighborhood: this.selectedneighborhood
+      });
     }
   }
 };

@@ -21,7 +21,7 @@ import RestaurantCard from '../components/Card';
 import GoogleMap from '../components/Map';
 
 export default {
-  name: 'page-restaurants',
+  name: 'restaurants-page',
   components: {
     RestaurantFilters,
     RestaurantCard,

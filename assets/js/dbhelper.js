@@ -25,11 +25,10 @@ export default class DBHelper {
 
     if (query.cuisine && query.neighborhood) {
       qs += `&`
-
     }
 
     if (query.neighborhood) {
-      qs += `neighborhood=${neighborhood}`
+      qs += `neighborhood=${query.neighborhood}`
     }
 
     return qs;
