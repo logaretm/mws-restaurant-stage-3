@@ -18,12 +18,7 @@ export default class Store {
       return Promise.resolve(state);
     }
 
-    return Promise.all([
-      idb.getCachedCollection('restaurants'),
-      idb.getCachedCollection('reviews'),
-      idb.getCachedCollection('neighborhoods'),
-      idb.getCachedCollection('cuisines'),
-    ]).then(([restaurants, reviews, neighborhoods, cuisines]) => {
+    return idb.getCachedCollections(['restaurants', 'reviews', 'neighborhoods', 'cuisines']).then(([ restaurants, reviews, neighborhoods, cuisines ]) => {
       state.restaurants = restaurants;
       state.reviews = reviews;
       state.neighborhoods = neighborhoods;

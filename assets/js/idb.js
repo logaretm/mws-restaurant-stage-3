@@ -12,7 +12,7 @@ export default class IDB {
       dbPromise = idb.open('app-store', 1, upgradeDB => {
         switch (upgradeDB.oldVersion) {
           case 0:
-            upgradeDB.createObjectStore('restaurants', { keypath: 'id' });
+            upgradeDB.createObjectStore('restaurants', { keyPath: 'id' });
             upgradeDB.createObjectStore('reviews', { keyPath: 'id' });
             upgradeDB.createObjectStore('neighborhoods');
             upgradeDB.createObjectStore('cuisines');
@@ -21,6 +21,20 @@ export default class IDB {
     }
 
     return dbPromise;
+  }
+
+  static getCachedCollections (stores) {
+    if (typeof indexedDB === 'undefined') {
+      return Promise.resolve({});
+    }
+
+    return this.idb.then(db => {
+      const transaction = db.transaction(stores);
+
+      return Promise.all(stores.map(store => {
+        return transaction.objectStore(store).getAll();
+      }));
+    });
   }
 
   static getCachedCollection(storeName) {
@@ -43,17 +57,16 @@ export default class IDB {
     });
   }
 
-  static cacheCollection(storeName, items, limit) {
-    items = limit ? items.slice(0, limit) : items;
-
+  static cacheCollection(storeName, items) {
     if (typeof indexedDB === 'undefined') {
       return Promise.resolve();
     }
 
     return this.idb.then(db => {
       const tx = db.transaction(storeName, 'readwrite');
-      items.forEach(item => {
-        tx.objectStore(storeName).put(item);
+      items.forEach((item, idx) => {
+        const args = typeof item === 'string' ? [item, idx] : [item];
+        tx.objectStore(storeName).put(...args);
       });
 
       return tx.complete;
