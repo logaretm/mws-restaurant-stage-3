@@ -1,6 +1,6 @@
 <template>
   <li class="restaurant__card">
-    <img :src="imageUrl" :alt="`${restaurant.name} Restaurant in ${restaurant.neighborhood}`">
+    <async-image :src="imageUrl" :alt="`${restaurant.name} Restaurant in ${restaurant.neighborhood}`"></async-image>
     <div class="restaurant__card__body">
       <h2>{{ restaurant.name }}</h2>
       <p>{{ restaurant.neighborhood }}</p>
@@ -11,8 +11,13 @@
 </template>
 
 <script>
+import AsyncImage from './AsyncImage';
+
 export default {
   name: 'restaurant-card',
+  components: {
+    AsyncImage
+  },
   props: {
     restaurant: {
       type: Object,
