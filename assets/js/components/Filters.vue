@@ -31,8 +31,8 @@ export default {
         this.neighborhoods = ns;
         this.cuisines = cs;
       }).catch((err) => {
-        // If the user have some options then he was probably offline.
-        if (this.neighborhoods.length && this.cuisines.length) {
+        // Don't handle error if the user was offline or if he has data to work with.
+        if ((this.neighborhoods.length && this.cuisines.length) || !this.$isOnline) {
           return;
         }
 

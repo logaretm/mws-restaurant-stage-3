@@ -77,9 +77,6 @@ function fromNetwork (request) {
       }
 
       return response;
-    }).catch(err => {
-      console.log(err);
-      return null;
     });
   });
 }

@@ -59,6 +59,13 @@ export default {
       this.filters.neighborhood = neighborhood;
       this.$db.fetchRestaurants({ cuisine, neighborhood }).then(restaurants => {
         this.restaurants = restaurants;
+      }).catch(err => {
+        // Don't handle error if The user have data, or he is offline.
+        if (this.restaurants.length || !this.$isOnline) {
+          return;
+        }
+
+        console.log(err.message);
       });
     }
   },

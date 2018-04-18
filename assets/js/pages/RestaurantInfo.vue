@@ -62,27 +62,43 @@ export default {
     }
   },
   methods: {
+    updateRestaurant (restaurant) {
+      this.restaurant = restaurant;
+      this.marker = this.$db.createMarkerData(restaurant);
+      this.$bus.$emit('fillBreadcrumb', [{ name: restaurant.name, url: this.$db.urlForRestaurant(restaurant) }]);
+    },
     fetch () {
       if (!this.restaurantId) {
         // handle not specifying an id.
         return;
       }
 
-      this.$db.fetchRestaurantById(this.restaurantId).then(restaurant => {
-        this.restaurant = restaurant;
-        this.marker = this.$db.createMarkerData(restaurant);
-        this.$bus.$emit('fillBreadcrumb', [{ name: restaurant.name, url: this.$db.urlForRestaurant(restaurant) }]);
-      });
-      this.$db.fetchReviewsByRestaurantId(this.restaurantId).then(reviews => {
+      return Promise.all([
+        this.$db.fetchRestaurantById(this.restaurantId),
+        this.$db.fetchReviewsByRestaurantId(this.restaurantId)
+      ]).then(([restaurant, reviews]) => {
+        this.updateRestaurant(restaurant);
         this.reviews = reviews;
+      }).catch(err => {
+        if (!this.$isOnline || this.restaurant) {
+          return;
+        }
+
+        console.log(err.message);
       });
     }
   },
-  mounted () {
+  created () {
     this.$store.populate().then(({ reviews }) => {
-      this.reviews = reviews;
+      // display what we have for this restaurant.
+      this.reviews = reviews.filter(review => review.restaurant_id == this.restaurantId);
 
-      return this.$store.find('restaurants', this.restaurantId);
+      // find the restaurant from cache and display it.
+      return this.$store.find('restaurants', Number(this.restaurantId)).then(restaurant => {
+        if (restaurant) {
+          this.updateRestaurant(restaurant);
+        }
+      });
     }).then(() => {
       this.fetch();
     });

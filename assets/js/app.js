@@ -26,6 +26,13 @@ window.initMap = () => {
   eventBus.$emit('initMap');
 };
 
+// define a getter for the online status of the user.
+Object.defineProperty(Vue.prototype, '$isOnline', {
+  get () {
+    return navigator.onLine;
+  }
+});
+
 new Vue({
   el: '#app',
   components: {
