@@ -22,10 +22,8 @@ function precache () {
       './manifest.webmanifest',
       './index.html',
       './restaurant.html',
-      './js/main.js',
-      './js/dbhelper.js',
-      './css/styles.css',
-      './data/restaurants.json'
+      './js/app.js',
+      './css/app.css'
     ]);
   });
 }
