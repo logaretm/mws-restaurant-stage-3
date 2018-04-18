@@ -8,14 +8,14 @@
 <script>
 const callback = (entries) => {
   entries.forEach(entry => {
-    if (typeof entry.target.$notifyInView === 'function') {
+    if (entry.isIntersecting && typeof entry.target.$notifyInView === 'function') {
       entry.target.$notifyInView();
     }
   });
 };
 
 
-const observer = new IntersectionObserver(callback, { root: null, threshold: 0.5 });
+const observer = new IntersectionObserver(callback, { root: null });
 
 export default {
   props: {
@@ -41,6 +41,7 @@ export default {
       img.onerror = () => {
         this.loaded = true;
       };
+      observer.unobserve(this.$el);
     });
 
     this.$el.$notifyInView = () => {
