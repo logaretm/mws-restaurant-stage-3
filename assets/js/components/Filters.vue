@@ -22,13 +22,22 @@ export default {
     selectedNeighborhood: '',
     selectedCuisine: ''
   }),
-  created () {
-    this.$db.fetchNeighborhoods().then(ns => {
-      this.neighborhoods = ns;
-    });
+  methods: {
+    fetch () {
+      this.$db.fetchNeighborhoods().then(ns => {
+        this.neighborhoods = ns;
+      });
 
-    this.$db.fetchCuisines().then(cs => {
-      this.cuisines = cs;
+      this.$db.fetchCuisines().then(cs => {
+        this.cuisines = cs;
+      });
+    }
+  },
+  created () {
+    this.$store.populate().then(({ neighborhoods, cuisines }) => {
+      this.neighborhoods = neighborhoods;
+      this.cuisines = cuisines;
+      this.fetch();
     });
   },
   watch: {

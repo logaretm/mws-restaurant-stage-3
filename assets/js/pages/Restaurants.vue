@@ -49,7 +49,9 @@ export default {
     }
   },
   created () {
-    this.fetch();
+    this.$store.populate().then(({ restaurants }) => {
+      this.restaurants = restaurants;
+    });
   }
 };
 </script>

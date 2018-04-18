@@ -79,7 +79,13 @@ export default {
     }
   },
   mounted () {
-    this.fetch();
+    this.$store.populate().then(({ reviews }) => {
+      this.reviews = reviews;
+
+      return this.$store.find('restaurants', this.restaurantId);
+    }).then(() => {
+      this.fetch();
+    });
   }
 };
 </script>
