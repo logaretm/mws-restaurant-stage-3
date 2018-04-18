@@ -86,7 +86,7 @@ export default class DBHelper {
   static fetchCuisines () {
     return fetch(`${DBHelper.DATABASE_URL}/cuisines`).then(res => {
       return res.json().then(json => {
-        return idb.cacheCollection('neighborhoods', json.cuisines).then(() => json.cuisines);
+        return idb.cacheCollection('cuisines', json.cuisines).then(() => json.cuisines);
       });
     });
   }

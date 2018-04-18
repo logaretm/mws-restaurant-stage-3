@@ -82,6 +82,13 @@ function fromNetwork (request) {
       }
 
       return response;
+    }).catch(err => {
+      // ignore error
+      if (isAPI(request) && !navigator.onLine) {
+        return;
+      }
+
+      console.log(err.message);
     });
   });
 }
