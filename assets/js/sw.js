@@ -17,8 +17,17 @@ self.addEventListener('fetch', function (e) {
     return;
   }
 
-  e.respondWith(fromCache(e.request)); // otherwise get it from cache.
-  e.waitUntil(fromNetwork(e.request)); // update the cache.
+
+   // get it from cache
+  e.respondWith(fromCache(e.request).then(matching => {
+    if (!matching) {
+      return fromNetwork(e.request);
+    }
+
+    e.waitUntil(fromNetwork(e.request)); // update the cache.
+
+    return matching;
+  }));
 });
 
 // Delete old caches.
@@ -36,7 +45,7 @@ function precache () {
       './css/app.css',
       './img/icons/favicon-32x32.png',
       './img/icons/favicon-16x16.png',
-      './favicon.icon',
+      './favicon.ico',
     ]);
   });
 }
@@ -51,9 +60,7 @@ function fromCache (request) {
       request = new Request('/restaurant.html');
     }
 
-    return cache.match(request).then(function (matching) {
-      return matching || fromNetwork(request);
-    });
+    return cache.match(request);
   });
 }
 
