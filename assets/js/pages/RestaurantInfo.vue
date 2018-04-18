@@ -4,7 +4,10 @@
     <section class="restaurant__container" v-if="restaurant">
       <div class="restaurant__details">
         <h2 class="restaurant__name">{{ restaurant.name }}</h2>
-        <img class="restaurant__img" :src="imageUrl" :alt="`${restaurant.name} Restaurant in ${restaurant.neighborhood}`">
+        <picture class="restaurant__img">
+          <source v-for="src in images" :key="src" :srcset="src">
+          <img class="restaurant__img" :src="images[images.length - 1]" :alt="`${restaurant.name} Restaurant in ${restaurant.neighborhood}`">
+        </picture>
         <p class="restaurant__cuisine">{{ restaurant.cuisine_type }}</p>
         <p class="restaurant__address">{{ restaurant.address }}</p>
         <table class="restaurant__hours" v-if="restaurant.operating_hours">
@@ -44,7 +47,7 @@ export default {
     marker: null
   }),
   computed: {
-    imageUrl () {
+    images () {
       return this.$db.imageUrlForRestaurant(this.restaurant);
     },
     restaurantId () {

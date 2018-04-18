@@ -1,6 +1,6 @@
 <template>
   <li class="restaurant__card">
-    <async-image :src="imageUrl" :alt="`${restaurant.name} Restaurant in ${restaurant.neighborhood}`"></async-image>
+    <async-image :sources="images" :alt="`${restaurant.name} Restaurant in ${restaurant.neighborhood}`"></async-image>
     <div class="restaurant__card__body">
       <h2>{{ restaurant.name }}</h2>
       <p>{{ restaurant.neighborhood }}</p>
@@ -28,7 +28,7 @@ export default {
     url () {
       return this.$db.urlForRestaurant(this.restaurant);
     },
-    imageUrl () {
+    images () {
       return this.$db.imageUrlForRestaurant(this.restaurant);
     }
   }

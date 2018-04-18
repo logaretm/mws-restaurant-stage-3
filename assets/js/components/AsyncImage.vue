@@ -1,6 +1,9 @@
 <template>
   <div class="img__container">
-    <img :src="src" :alt="alt" v-if="loaded" class="async__image">
+    <picture v-if="loaded">
+      <source v-for="source in sources" :key="source" :srcset="source">
+      <img :src="src" :alt="alt" class="async__image">
+    </picture>
     <img class="placeholder__image" v-else src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" :alt="alt">
   </div>
 </template>
@@ -19,9 +22,9 @@ const observer = new IntersectionObserver(callback, { root: null });
 
 export default {
   props: {
-    src: {
-      type: String,
-      required: true
+    sources: {
+      type: Array,
+      default: []
     },
     alt: {
       type: String,
@@ -34,7 +37,7 @@ export default {
   mounted () {
     this.$once('inView', () => {
       const img = new Image();
-      img.src = this.src;
+      img.src = this.sources[0];
       img.onload = () => {
         this.loaded = true;
       };
