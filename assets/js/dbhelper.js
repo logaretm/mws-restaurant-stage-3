@@ -44,8 +44,6 @@ export default class DBHelper {
       return res.json().then(json => {
         return idb.cacheCollection('restaurants', json.restaurants).then(() => json.restaurants);
       })
-    }).catch(err => {
-      console.log(err.message)
     });
   }
 
@@ -57,8 +55,6 @@ export default class DBHelper {
       return res.json().then(json => {
         return idb.cacheItem('restaurants', json.restaurant).then(() => json.restaurant);
       });
-    }).catch(err => {
-      console.log(err.message);
     });
   }
 
@@ -70,8 +66,6 @@ export default class DBHelper {
       return res.json().then(json => {
         return idb.cacheCollection('reviews', json.reviews).then(() => json.reviews);
       });
-    }).catch(err => {
-      console.log(err.message);
     });
   }
 
@@ -83,8 +77,6 @@ export default class DBHelper {
       return res.json().then(json => {
         return idb.cacheCollection('neighborhoods', json.neighborhoods).then(() => json.neighborhoods);
       });
-    }).catch(err => {
-      console.log(err.message);
     });
   }
 
@@ -96,8 +88,6 @@ export default class DBHelper {
       return res.json().then(json => {
         return idb.cacheCollection('neighborhoods', json.cuisines).then(() => json.cuisines);
       });
-    }).catch(err => {
-      console.log(err.message);
     });
   }
 
