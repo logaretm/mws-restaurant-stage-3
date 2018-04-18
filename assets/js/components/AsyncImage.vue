@@ -1,7 +1,7 @@
 <template>
   <div class="img__container">
     <img :src="src" :alt="alt" v-if="loaded" class="async__image">
-    <img class="placeholder__image" v-else src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==">
+    <img class="placeholder__image" v-else src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" :alt="alt">
   </div>
 </template>
 
