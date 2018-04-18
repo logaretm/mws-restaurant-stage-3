@@ -1,6 +1,9 @@
 import Vue from 'vue';
 
 import RestaurantsPage from './pages/Restaurants';
+import RestaurantInfoPage from './pages/RestaurantInfo';
+import Breadcrumb from './components/Breadcrumb';
+
 import '../stylus/app.styl';
 import DBHelper from './dbhelper';
 
@@ -23,7 +26,9 @@ window.initMap = () => {
 new Vue({
   el: '#app',
   components: {
-    RestaurantsPage
+    Breadcrumb,
+    RestaurantsPage,
+    RestaurantInfoPage
   },
   created () {
     navigator.serviceWorker.register('sw.js');
