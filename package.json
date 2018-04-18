@@ -19,7 +19,7 @@
     "build": "webpack --config webpack/config.js",
     "build:prod": "cross-env NODE_ENV=production webpack --config webpack/config.js",
     "debug": "node debug app.js",
-    "start": "node app.js"
+    "start": "cross-env NODE_ENV=production node app.js"
   },
   "main": "app.js",
   "repository": {
