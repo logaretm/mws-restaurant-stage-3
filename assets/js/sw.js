@@ -28,7 +28,16 @@ function precache () {
   });
 }
 
+function isAPI (request) {
+  return /api/.test(request.url);
+}
+
 function fromCache (request) {
+  // bypass cache to network if its an API call.
+  if (isAPI(request)) {
+    return fromNetwork(request);
+  }
+
   return caches.open(`${CACHE_NAME}_${VERSION}`).then(function (cache) {
     if (/restaurant\.html/.test(request.url)) {
       request = new Request('/restaurant.html');
@@ -44,7 +53,8 @@ function fromNetwork (request) {
   return caches.open(`${CACHE_NAME}_${VERSION}`).then(function (cache) {
     return fetch(request).then(function (response) {
       const cloned = response.clone();
-      if (response.ok) {
+      // don't cache API calls
+      if (response.ok && !isAPI(request)) {
         return cache.put(request, cloned).then(() => {
           return response;
         });
