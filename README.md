@@ -48,7 +48,7 @@ Let's start with running commands in your terminal, known as command line interf
 #### Build Project Assets
 
 ```Build Assets
-# npm run build:prod
+# npm run build
 ```
 
 ##### Install Sails.js globally
