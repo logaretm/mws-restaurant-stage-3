@@ -1,7 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const { VueLoaderPlugin } = require('vue-loader')
+const { VueLoaderPlugin } = require('vue-loader');
 const merge = require('webpack-merge');
 
 const isProduction = process.env.NODE_ENV === 'production';
@@ -18,13 +18,16 @@ let config = {
     new HtmlWebpackPlugin({
       title: 'Restaurants Review',
       filename: '../views/index.html',
-      template: 'assets/views/index.html'
+      template: 'assets/views/index.html',
+      inject: false
     }),
     new HtmlWebpackPlugin({
       title: 'Restaurant Review',
       filename: '../views/restaurant.html',
-      template: 'assets/views/restaurant.html'
+      template: 'assets/views/restaurant.html',
+      inject: false
     })
+
   ],
   output: {
     filename: 'js/app.js',
