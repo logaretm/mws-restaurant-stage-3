@@ -103,8 +103,8 @@ export default class DBHelper {
    */
   static imageUrlForRestaurant(restaurant) {
     return [
-      `/img/${restaurant.photograph}.webp`,
-      `/img/${restaurant.photograph}.jpg`
+      { src: `/img/${restaurant.photograph}.webp`, type: 'image/webp' },
+      { src: `/img/${restaurant.photograph}.jpg`, type: 'image/jpg' }
     ];
   }
 

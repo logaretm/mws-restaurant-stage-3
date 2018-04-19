@@ -5,8 +5,8 @@
       <div class="restaurant__details">
         <h2 class="restaurant__name">{{ restaurant.name }}</h2>
         <picture class="restaurant__img">
-          <source v-for="src in images" :key="src" :srcset="src">
-          <img class="restaurant__img" :src="images[images.length - 1]" :alt="`${restaurant.name} Restaurant in ${restaurant.neighborhood}`">
+          <source v-for="image in images" :key="image.src" :srcset="image.src" :type="image.src">
+          <img class="restaurant__img" :src="images[images.length - 1].src" :alt="`${restaurant.name} Restaurant in ${restaurant.neighborhood}`">
         </picture>
         <p class="restaurant__cuisine">{{ restaurant.cuisine_type }}</p>
         <p class="restaurant__address">{{ restaurant.address }}</p>

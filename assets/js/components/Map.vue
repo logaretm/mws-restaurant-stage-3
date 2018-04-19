@@ -46,6 +46,9 @@ export default {
       script.defer = true;
       script.async = true;
       script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyAlPcdc6Nq5JXLgjx0bpAdPwTA2cevTgIk&libraries=places&callback=initMap';
+      script.onerror = () => {
+        console.log('Failed to load the map');
+      };
       document.body.appendChild(script);
     },
     updateMarkers () {
