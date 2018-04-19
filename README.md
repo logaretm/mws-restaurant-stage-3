@@ -173,3 +173,7 @@ http://localhost:1337/reviews/<review_id>
 ```
 http://localhost:1337/reviews/<review_id>
 ```
+
+### Credits
+
+- Favicon are from [Baianat's Blob Icon free project](https://www.baianat.com/resources/blobs/).
