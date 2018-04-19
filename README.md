@@ -47,8 +47,8 @@ Let's start with running commands in your terminal, known as command line interf
 
 #### Build Project Assets
 
-```Install project dependancies
-# npm run build
+```Build Assets
+# npm run build:prod
 ```
 
 ##### Install Sails.js globally
@@ -60,7 +60,7 @@ Let's start with running commands in your terminal, known as command line interf
 ###### Start the server
 
 ```Start server
-# npm run dev
+# npm start
 ```
 
 ### You should now have access to your API server environment
