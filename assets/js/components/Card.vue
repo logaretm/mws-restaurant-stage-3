@@ -112,12 +112,7 @@ export default {
     flex-basis: 33.33333333%
     max-width: 33.33333333%
 
-@media only screen and (max-width: 767px)
-  .restaurant__card
-    flex-basis: 33.33333333%
-    max-width: 33.33333333%
-
-@media (max-width: 480px)
+@media (max-width: 767px)
   .restaurant__card
     flex-basis: 100%
     max-width: 100%
