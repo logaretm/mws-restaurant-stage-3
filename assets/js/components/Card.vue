@@ -124,6 +124,7 @@ export default {
   .img__container
     height: 100%
     width: 35%
+    min-width: 35%
 
   .restaurant__card-address
     display: none
