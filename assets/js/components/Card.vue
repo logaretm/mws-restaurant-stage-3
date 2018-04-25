@@ -5,8 +5,8 @@
       <h2>{{ restaurant.name }}</h2>
       <p class="restaurant__card-neighborhood">{{ restaurant.neighborhood }}</p>
       <p class="restaurant__card-address">{{ restaurant.address }}</p>
-      <a :href="url" class="restaurant__details__link">View Details</a>
     </div>
+    <a :href="url" class="restaurant__details__link">View Details</a>
   </li>
 </template>
 
@@ -38,6 +38,8 @@ export default {
 <style lang="stylus">
 .restaurant__card
   background-color: #fff
+  display: flex
+  flex-direction: column
   border: 0
   font-family: 'Open Sans', Arial,sans-serif
   margin: 15px
@@ -91,13 +93,14 @@ export default {
   color: #0D0D0D
   display: inline-block
   font-size: 12pt
-  margin: 15px 0 0
+  margin-top: auto
   padding: 8px 30px 10px
   text-align: center
   text-decoration: none
   text-transform: uppercase
   &:hover
-    color: #040e15
+    color: #fff
+    background-color: #391e00
 
 @media only screen and (min-width: 1200px)
   .restaurant__card
@@ -121,6 +124,7 @@ export default {
     display: flex
     align-items: center
     min-height: auto
+    flex-direction: row
   .img__container
     height: 100%
     width: 35%
