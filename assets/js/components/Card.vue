@@ -46,7 +46,6 @@ export default {
   min-height: 380px
   text-align: left
   padding: 0
-  width: 270px
   border-radius: 25px 0
   overflow: hidden
   flex-basis: 16.66666667%
