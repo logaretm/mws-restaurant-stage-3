@@ -89,7 +89,7 @@ export default {
 
 .restaurant__details__link
   background-color: #f18200
-  border-bottom: 3px solid #eee
+  border: 0px
   color: #0D0D0D
   display: inline-block
   font-size: 12pt
