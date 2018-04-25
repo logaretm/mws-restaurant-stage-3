@@ -1,6 +1,6 @@
 <template>
   <section :class="{ 'side__map__container': layout === 'full' }">
-    <div ref="map" role="application" :class="{ 'map': true, 'map__full': layout === 'full' }"></div>
+    <div ref="map" :title="title" role="application" :class="{ 'map': true, 'map__full': layout === 'full' }"></div>
   </section>
 </template>
 
@@ -12,6 +12,10 @@ let loaded = false;
 export default {
   name: 'google-map',
   props: {
+    title: {
+      type: String,
+      required: true
+    },
     layout: {
       type: String
     },
@@ -52,6 +56,8 @@ export default {
       document.body.appendChild(script);
     },
     updateMarkers () {
+      if (!loaded) return;
+
       this.markersInstances.forEach(m => m.setMap(null));
       this.markersInstances = this.markers.map(markerData => {
         const marker = new google.maps.Marker(Object.assign({}, markerData, {

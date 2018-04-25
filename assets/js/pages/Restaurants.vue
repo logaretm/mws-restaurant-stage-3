@@ -1,6 +1,6 @@
 <template>
 <div>
-  <google-map :location="center" :markers="markers"></google-map>
+  <google-map :location="center" :markers="markers" :title="mapTitle"></google-map>
 
   <section>
     <restaurant-filters @update="fetch"></restaurant-filters>
@@ -39,6 +39,20 @@ export default {
     }
   }),
   computed: {
+    mapTitle () {
+      if (this.filters.neighborhood && this.filters.cuisine_type) {
+        return `Map of ${this.filters.cuisine_type} restaurants in the ${this.filters.neighborhood} area`;
+      }
+      if (this.filters.neighborhood) {
+        return `Map of restaurants in the ${this.filters.neighborhood} area`;
+      }
+
+      if (this.filters.cuisine_type) {
+        return `Map of surrounding ${this.filters.cuisine_type} restaurants.`;
+      }
+
+      return 'Map of restaurants';
+    },
     filteredRestaurants () {
       return this.restaurants.filter(restaurant => {
         const matchesCuisine = this.filters.cuisine_type ? restaurant.cuisine_type === this.filters.cuisine_type : true;

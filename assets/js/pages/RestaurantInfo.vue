@@ -1,6 +1,6 @@
 <template>
   <div>
-    <google-map v-if="restaurant" :location="restaurant.latlng" :markers="marker ? [marker] : []" :zoom="16" layout="full"></google-map>
+    <google-map v-if="restaurant" :location="restaurant.latlng" :markers="marker ? [marker] : []" :zoom="16" layout="full" :title="`Map of ${restaurant.name} location`"></google-map>
     <section class="restaurant__container" v-if="restaurant">
       <div class="restaurant__details">
         <h2 class="restaurant__name">{{ restaurant.name }}</h2>
