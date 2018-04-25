@@ -40,7 +40,6 @@ export default {
 .breadcrumb li
   display: inline
 
-
 /* Add a slash symbol (/) before/behind each list item */
 .breadcrumb li+li:before
   padding: 8px
@@ -50,7 +49,7 @@ export default {
 
 /* Add a color to all links inside the list */
 .breadcrumb li a
-  color: #0275d8
+  color: #02437c
   text-decoration: none
 
 
@@ -62,6 +61,7 @@ export default {
 
 .breadcrumb li a[aria-current="page"]
   color: #000
+  font-weight: bold
 
 @media only screen and (max-width: 767px)
   .breadcrumb

@@ -53,8 +53,8 @@ export default {
   max-width: 16.66666667%
   box-shadow: 0 5px 10px -2px rgba(0, 0, 0, 0.05)
 
-  .restaurant__card-neighborhood
-    color: #515151
+.restaurant__card-neighborhood
+  color: #515151
 
 .restaurant__card-img
   background-color: #ccc

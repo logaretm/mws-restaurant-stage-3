@@ -124,14 +124,14 @@ export default {
 
 .restaurant__reviews__title
   font-size: 18pt
-  color: #f18200
+  color: #743e00
   margin-top: 20px
   display: flex
   font-weight: 100
   flex-direction: column
 
 .restaurant__name
-  color: #f18200
+  color: #743e00
   font-family: 'Open Sans', Arial,sans-serif
   font-size: 20pt
   font-weight: 200

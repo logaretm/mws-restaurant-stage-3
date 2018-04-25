@@ -52,7 +52,7 @@ export default {
 
 
 .review__item__rating
-  background-color: #f18200
+  background-color: #743e00
   color: #fff
   width: fit-content
   font-size: 16px
