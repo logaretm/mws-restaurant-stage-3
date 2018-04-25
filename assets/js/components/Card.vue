@@ -1,10 +1,10 @@
 <template>
   <li class="restaurant__card">
-    <async-image :sources="images" :alt="`${restaurant.name} Restaurant in ${restaurant.neighborhood}`"></async-image>
+    <async-image :sources="images" :alt="`${restaurant.name} Restaurant in ${restaurant.neighborhood}`" class="restaurant__card-img"></async-image>
     <div class="restaurant__card__body">
       <h2>{{ restaurant.name }}</h2>
-      <p>{{ restaurant.neighborhood }}</p>
-      <p>{{ restaurant.address }}</p>
+      <p class="restaurant__card-neighborhood">{{ restaurant.neighborhood }}</p>
+      <p class="restaurant__card-address">{{ restaurant.address }}</p>
       <a :href="url" class="restaurant__details__link">View Details</a>
     </div>
   </li>
@@ -38,7 +38,7 @@ export default {
 <style lang="stylus">
 .restaurant__card
   background-color: #fff
-  border: 2px solid #ccc
+  border: 0
   font-family: 'Open Sans', Arial,sans-serif
   margin: 15px
   min-height: 380px
@@ -49,14 +49,18 @@ export default {
   overflow: hidden
   flex-basis: 16.66666667%
   max-width: 16.66666667%
+  box-shadow: 0 5px 10px -2px rgba(0, 0, 0, 0.05)
 
+  .restaurant__card-neighborhood
+    display: none
 
-.restaurant__card img
+.restaurant__card-img
   background-color: #ccc
   display: block
   margin: 0
-  max-width: 100%
-  height: auto
+  width: 100%
+  height: 100%
+  object-fit: cover
 
 
 .restaurant__card__body
@@ -115,5 +119,14 @@ export default {
   .restaurant__card
     flex-basis: 100%
     max-width: 100%
+    display: flex
+    align-items: center
+    min-height: auto
+  .img__container
+    height: 100%
+    width: 35%
+
+  .restaurant__card-address
+    display: none
 
 </style>
