@@ -52,7 +52,7 @@ export default {
   box-shadow: 0 5px 10px -2px rgba(0, 0, 0, 0.05)
 
   .restaurant__card-neighborhood
-    color: gray
+    color: #515151
 
 .restaurant__card-img
   background-color: #ccc
@@ -70,7 +70,7 @@ export default {
 
 
 .restaurant__card__body h2
-  color: #f18200
+  color: #743e00
   font-family: 'Open Sans', Arial,sans-serif
   font-size: 14pt
   font-weight: 200
