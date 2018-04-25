@@ -2,7 +2,7 @@
   <div class="img__container">
     <picture v-if="loaded">
       <source v-for="source in sources" :key="source.src" :srcset="source.src" :type="source.type">
-      <img :src="fallbackSrc" :alt="alt" :class="['async__imag', $attrs.class]">
+      <img :src="fallbackSrc" :alt="alt" :class="['async__img', $attrs.classes]">
     </picture>
     <img class="placeholder__image" v-else src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" :alt="alt">
   </div>

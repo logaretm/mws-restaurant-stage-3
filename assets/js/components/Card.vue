@@ -1,6 +1,6 @@
 <template>
   <li class="restaurant__card">
-    <async-image :sources="images" :alt="`${restaurant.name} Restaurant in ${restaurant.neighborhood}`" class="restaurant__card-img"></async-image>
+    <async-image :sources="images" :alt="`${restaurant.name} Restaurant in ${restaurant.neighborhood}`" classes="restaurant__card-img"></async-image>
     <div class="restaurant__card__body">
       <h2>{{ restaurant.name }}</h2>
       <p class="restaurant__card-neighborhood">{{ restaurant.neighborhood }}</p>
@@ -52,7 +52,7 @@ export default {
   box-shadow: 0 5px 10px -2px rgba(0, 0, 0, 0.05)
 
   .restaurant__card-neighborhood
-    display: none
+    color: gray
 
 .restaurant__card-img
   background-color: #ccc
@@ -85,10 +85,10 @@ export default {
   font-size: 11pt
 
 
-.restaurant__card__body a
+.restaurant__details__link
   background-color: #f18200
   border-bottom: 3px solid #eee
-  color: #fff
+  color: #0D0D0D
   display: inline-block
   font-size: 12pt
   margin: 15px 0 0
@@ -96,9 +96,8 @@ export default {
   text-align: center
   text-decoration: none
   text-transform: uppercase
-
-.restaurant__details__link:hover
-  color: #040e15
+  &:hover
+    color: #040e15
 
 @media only screen and (min-width: 1200px)
   .restaurant__card
@@ -127,6 +126,9 @@ export default {
     width: 35%
 
   .restaurant__card-address
+    display: none
+
+  .restaurant__details__link
     display: none
 
 </style>
