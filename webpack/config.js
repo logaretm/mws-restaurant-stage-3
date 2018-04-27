@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const PreloadWebpackPlugin = require('preload-webpack-plugin');
 const { VueLoaderPlugin } = require('vue-loader');
 const merge = require('webpack-merge');
 
@@ -18,16 +19,12 @@ let config = {
     new HtmlWebpackPlugin({
       title: 'Restaurants Review',
       filename: '../views/index.html',
-      template: 'assets/views/index.html',
-      inject: false
+      template: 'assets/views/index.html'
     }),
-    new HtmlWebpackPlugin({
-      title: 'Restaurant Review',
-      filename: '../views/restaurant.html',
-      template: 'assets/views/restaurant.html',
-      inject: false
+    new PreloadWebpackPlugin({
+      rel: 'preload',
+      include: 'asyncChunks' // or 'initial'
     })
-
   ],
   output: {
     filename: 'js/app.js',
@@ -35,9 +32,6 @@ let config = {
     publicPath: '/'
   },
   resolve: {
-    alias: {
-      'vue': 'vue/dist/vue.esm.js',
-    },
     extensions: ['*', '.js', '.vue', '.json']
   },
   module: {
@@ -51,15 +45,7 @@ let config = {
       {
         test: /\.js$/,
         exclude: /(node_modules|sw\.js)/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            babelrc: false,
-            presets: [
-              ['@babel/preset-env', { targets: { browsers: ["last 2 versions", "safari >= 7"] } } ]
-            ]
-          }
-        }
+        loader: 'babel-loader'
       },
 
       // file loaders

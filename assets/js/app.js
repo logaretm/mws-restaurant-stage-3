@@ -1,16 +1,15 @@
 import Vue from 'vue';
-
-import RestaurantsPage from './pages/Restaurants';
-import RestaurantInfoPage from './pages/RestaurantInfo';
-import Breadcrumb from './components/Breadcrumb';
+import VueRouter from 'vue-router';
+import App from './App';
 import DBHelper from './dbhelper';
 import Store from './store';
-
-import '../stylus/app.styl';
+import router from './router';
 
 // static assets
 import '../manifest.webmanifest';
 import './sw';
+
+Vue.use(VueRouter);
 
 // inject the db helper.
 Vue.prototype.$db = DBHelper;
@@ -35,12 +34,9 @@ Object.defineProperty(Vue.prototype, '$isOnline', {
 
 new Vue({
   el: '#app',
-  components: {
-    Breadcrumb,
-    RestaurantsPage,
-    RestaurantInfoPage
-  },
+  router,
   created () {
     navigator.serviceWorker.register('sw.js');
-  }
+  },
+  render: h => h(App)
 });
