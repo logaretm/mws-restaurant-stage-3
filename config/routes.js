@@ -32,9 +32,9 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  'GET /': 'ViewsController.home',
-  'GET /restaurant': 'ViewsController.restaurant',
-  'GET /restaurant.html': 'ViewsController.restaurant', // handle html ext
+  'GET /': 'ViewsController.app',
+  'GET /restaurant': 'ViewsController.app',
+  'GET /restaurant.html': 'ViewsController.app', // handle html ext
 
 
   /***************************************************************************
