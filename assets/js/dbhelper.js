@@ -136,14 +136,14 @@ export default class DBHelper {
     });
   }
 
-  static postReview (restaurant, { name, rating, comments }) {
+  static postReview({ name, rating, comments, restaurantId }) {
     fetch(`${DBHelper.DATABASE_URL}/reviews`, {
       method: 'post',
       body: {
         name
         rating,
         comments,
-        restaurant_id: restaurant.id
+        restaurant_id: restaurantId
       }
     }).then(response => response.json()).then(json => {
       // cache the review object.
