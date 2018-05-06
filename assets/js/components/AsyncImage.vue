@@ -19,7 +19,6 @@ const callback = (entries) => {
 
 const observer = new IntersectionObserver(callback, { root: null });
 
-
 // check webp support
 const checkWebpSupport = new Promise((resolve, reject) => {
   const img = new Image();
@@ -34,7 +33,7 @@ export default {
   props: {
     sources: {
       type: Array,
-      default: []
+      default: () => []
     },
     alt: {
       type: String,
@@ -66,7 +65,7 @@ export default {
           this.loaded = true;
         };
         observer.unobserve(this.$el);
-      })
+      });
     });
 
     this.$el.$notifyInView = () => {
@@ -98,4 +97,3 @@ export default {
   min-height: 100px
 
 </style>
-

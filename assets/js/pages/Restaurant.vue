@@ -20,6 +20,11 @@
         </table>
       </div>
 
+      <div class="restaurant__reviews-form">
+        <h3 class="restaurant__reviews-form-title">Post Review</h3>
+        <review-form :restaurant-id="restaurant.id" :restaurant-name="restaurant.name"></review-form>
+      </div>
+
       <div class="restaurant__reviews">
         <h3 class="restaurant__reviews__title" v-if="reviews.length">Reviews</h3>
         <p v-else>No reviews yet!</p>
@@ -53,7 +58,7 @@ export default {
     restaurantId () {
       let name = 'id';
       const url = window.location.href;
-      name = name.replace(/[\[\]]/g, '\\$&');
+      name = name.replace(/[[\]]/g, '\\$&');
       const regex = new RegExp(`[?&]${name}(=([^&#]*)|&|#|$)`);
       const results = regex.exec(url);
 
@@ -94,6 +99,7 @@ export default {
   created () {
     this.$store.populate().then(({ reviews }) => {
       // display what we have for this restaurant.
+      // eslint-disable-next-line
       this.reviews = reviews.filter(review => review.restaurant_id == this.restaurantId);
 
       // find the restaurant from cache and display it.
@@ -140,17 +146,14 @@ export default {
   text-transform: uppercase
   line-height: 1.1
 
-
 .restaurant__img
   width: 100%
   display: block
   height: auto
 
-
 .restaurant__address
   font-size: 12pt
   margin: 10px 0px
-
 
 .restaurant__cuisine
   background-color: #333
@@ -163,7 +166,6 @@ export default {
   text-align: center
   text-transform: uppercase
   width: 100%
-
 
 .restaurant__hours td
   color: #666
@@ -181,13 +183,11 @@ export default {
     max-width: 50%
     margin-top: 0
 
-
 @media (min-width: 768px) and (max-width: 979px)
   .restaurant__container
     flex-basis: 50%
     max-width: 50%
     margin-top: 0
-
 
 @media only screen and (max-width: 767px)
   .restaurant__container

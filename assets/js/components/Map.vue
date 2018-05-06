@@ -37,7 +37,7 @@ export default {
   }),
   methods: {
     initMap () {
-      this.$map = new google.maps.Map(this.$refs.map, {
+      this.$map = new window.google.maps.Map(this.$refs.map, {
         zoom: this.zoom,
         center: this.location,
         scrollwheel: false
@@ -60,13 +60,13 @@ export default {
 
       this.markersInstances.forEach(m => m.setMap(null));
       this.markersInstances = this.markers.map(markerData => {
-        const marker = new google.maps.Marker(Object.assign({}, markerData, {
+        const marker = new window.google.maps.Marker(Object.assign({}, markerData, {
           map: this.$map,
-          animation: google.maps.Animation.DROP,
+          animation: window.google.maps.Animation.DROP
         }));
 
-        google.maps.event.addListener(marker, 'click', () => {
-          window.location.href = marker.url
+        window.google.maps.event.addListener(marker, 'click', () => {
+          window.location.href = marker.url;
         });
 
         return marker;

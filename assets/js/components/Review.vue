@@ -33,7 +33,6 @@ export default {
   width: 100%
   border-radius: 25px 0
 
-
 .review__item__header
   display: flex
   padding: 20px
@@ -44,12 +43,10 @@ export default {
   color: #fff
   border-radius: 25px 0 0
 
-
 .review__item__body
   padding: 20px
   display: flex
   flex-direction: column
-
 
 .review__item__rating
   background-color: #743e00
@@ -59,11 +56,9 @@ export default {
   border-radius: 2px
   padding: 5px 15px
 
-
 .review__item__header h2
   margin: 0
   font-weight: 100
-
 
 .review__item__timestamp
   color: #959292

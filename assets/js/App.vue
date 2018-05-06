@@ -30,7 +30,7 @@ export default {
   components: {
     Breadcrumb
   }
-}
+};
 </script>
 
 <style lang="stylus">
@@ -43,58 +43,47 @@ body,
 html
   box-sizing: border-box
 
-
 body,td,th,p
   font-family: 'Open Sans', Arial, Helvetica, sans-serif
   font-size: 10pt
   color: #333
   line-height: 1.5
 
-
 body
   background-color: #fdfdfd
   margin: 0
   position:relative
-
 
 ul, li
   font-family: 'Open Sans', Arial, Helvetica, sans-serif
   font-size: 10pt
   color: #333
 
-
 a
   color: orange
   text-decoration: none
   padding: 1.5em
 
-
 a:hover, a:focus
   color: #3397db
   text-decoration: none
 
-
 a img
   border: none 0px #fff
-
 
 h1, h2, h3, h4, h5, h6
   font-family: 'Open Sans', Arial, Helvetica, sans-serif
   margin: 0 0 20px
 
-
 article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section
   display: block
-
 
 img, embed, object, video
   max-width: 100%
 
-
 #maincontent
   background-color: #f3f3f3
   min-height: 100%
-
 
 .footer
   background-color: #444
@@ -104,7 +93,6 @@ img, embed, object, video
   padding: 25px
   text-align: center
   text-transform: uppercase
-
 
 .footer a
   padding: 0px
@@ -121,7 +109,6 @@ nav
 nav h1
   margin: auto
 
-
 nav h1 a
   color: #fff
   font-size: 14pt
@@ -129,19 +116,16 @@ nav h1 a
   letter-spacing: 10px
   text-transform: uppercase
 
-
 .fixed__header
   position: fixed
   top: 0
   width: 100%
   z-index: 1000
 
-
 .footer
   bottom: 0
   position: absolute
   width: 50%
-
 
 .main__container
   display: flex
@@ -153,7 +137,6 @@ nav h1 a
 
   .footer
     width: 100%
-
 
 @media only screen and (max-width: 480px)
   .main__container

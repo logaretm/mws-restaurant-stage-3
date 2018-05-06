@@ -5,7 +5,7 @@ self.addEventListener('install', (e) => {
   // Cleanup old caches then precache the assets.
   e.waitUntil(
     cleanup().then(() => precache()).catch(err => {
-      console.log(`Failed to precache assets ${err.message}`)
+      console.log(`Failed to precache assets ${err.message}`);
     })
   );
 });
@@ -17,8 +17,7 @@ self.addEventListener('fetch', function (e) {
     return;
   }
 
-
-   // get it from cache
+  // get it from cache
   e.respondWith(fromCache(e.request).then(matching => {
     if (!matching) {
       return fromNetwork(e.request);
@@ -45,7 +44,7 @@ function precache () {
       './css/app.css',
       './img/icons/favicon-32x32.png',
       './img/icons/favicon-16x16.png',
-      './favicon.ico',
+      './favicon.ico'
     ]);
   });
 }
@@ -92,4 +91,3 @@ function fromNetwork (request) {
     });
   });
 }
-

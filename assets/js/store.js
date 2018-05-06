@@ -5,7 +5,7 @@ const state = {
   reviews: [],
   neighborhoods: [],
   cuisines: []
-}
+};
 
 let populated = false;
 

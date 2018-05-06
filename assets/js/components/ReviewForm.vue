@@ -6,7 +6,7 @@
     </label>
     <label>
       Comments
-      <textarea name="comments" rows="5" placeholder="Describe your experience" required v-model="comments"></textarea>
+      <textarea name="comments" rows="5" :placeholder="`Describe your experience at ${restaurantName}`" required v-model="comments"></textarea>
     </label>
     <label>
       Rating
@@ -21,6 +21,10 @@ export default {
     restaurantId: {
       type: [String, Number],
       required: true
+    },
+    restaurantName: {
+      type: String,
+      required: true
     }
   },
   data: () => ({
@@ -30,20 +34,32 @@ export default {
     isSubmitting: false
   }),
   methods: {
-    async onSubmit () {
-      try {
-        this.isSubmitting = true;
-        await this.$db.postReview({
-          name: this.name,
-          comments: this.comments,
-          rating: this.rating,
-          restaurantId: this.restaurantId
-        });
-      } catch (e) {
+    onSubmit () {
+      this.isSubmitting = true;
+      const review = {
+        id: `temp_${Date.now()}`,
+        name: this.name,
+        comments: this.comments,
+        rating: this.rating,
+        restaurantId: this.restaurantId,
+        createdAt: Date.now(),
+        updatedAt: Date.now()
+      };
+
+      this.$emit('submitted', review);
+
+      this.$db.postReview({
+        name: this.name,
+        comments: this.comments,
+        rating: this.rating,
+        restaurantId: this.restaurantId
+      }).catch(e => {
         console.log(e);
-      } finally {
+      }).then(rev => {
+        // update id
+        review.id = rev.id;
         this.isSubmitting = false;
-      }
+      });
     }
   }
 };

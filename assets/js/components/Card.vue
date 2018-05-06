@@ -69,12 +69,10 @@ export default {
   height: 100%
   object-fit: cover
 
-
 .restaurant__card__body
   padding: 0 30px 25px
   display: flex
   flex-direction: column
-
 
 .restaurant__card-title
   color: #743e00
@@ -85,7 +83,6 @@ export default {
   line-height: 1.3
   margin: 20px 0 10px
   text-transform: uppercase
-
 
 .restaurant__details__link
   background-color: #f18200

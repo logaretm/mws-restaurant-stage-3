@@ -83,7 +83,6 @@ export default {
   line-height: 1
   margin: 0 20px
 
-
 .filter-options select
   background-color: white
   border: 1px solid #fff
@@ -94,7 +93,6 @@ export default {
   margin: 10px
   padding: 0 10px
   width: 200px
-
 
 @media only screen and (max-width: 767px)
   .filter-options

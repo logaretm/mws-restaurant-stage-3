@@ -1,6 +1,5 @@
 import idb from 'idb';
 
-
 let dbPromise = null;
 
 /**
@@ -37,7 +36,7 @@ export default class IDB {
     });
   }
 
-  static getCachedCollection(storeName) {
+  static getCachedCollection (storeName) {
     if (typeof indexedDB === 'undefined') {
       return Promise.resolve([]);
     }
@@ -47,7 +46,7 @@ export default class IDB {
     });
   }
 
-  static getCachedItem(storeName, id) {
+  static getCachedItem (storeName, id) {
     if (typeof indexedDB === 'undefined') {
       return Promise.resolve(null);
     }
@@ -57,7 +56,7 @@ export default class IDB {
     });
   }
 
-  static cacheCollection(storeName, items) {
+  static cacheCollection (storeName, items) {
     if (typeof indexedDB === 'undefined') {
       return Promise.resolve();
     }
@@ -73,7 +72,7 @@ export default class IDB {
     });
   }
 
-  static cacheItem(storeName, item) {
+  static cacheItem (storeName, item) {
     if (typeof indexedDB === 'undefined') {
       return Promise.resolve();
     }

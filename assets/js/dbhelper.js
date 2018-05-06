@@ -5,13 +5,12 @@ import idb from './idb';
  */
 
 export default class DBHelper {
-
   /**
    * Database URL.
    * Change this to restaurants.json file location on your server.
    */
-  static get DATABASE_URL() {
-    const port = 1337 // Change this to your server port
+  static get DATABASE_URL () {
+    const port = 1337; // Change this to your server port
     return `http://localhost:${port}/api`;
   }
 
@@ -22,15 +21,15 @@ export default class DBHelper {
 
     let qs = '?';
     if (query.cuisine) {
-      qs += `cuisine_type=${query.cuisine}`
+      qs += `cuisine_type=${query.cuisine}`;
     }
 
     if (query.cuisine && query.neighborhood) {
-      qs += `&`
+      qs += `&`;
     }
 
     if (query.neighborhood) {
-      qs += `neighborhood=${query.neighborhood}`
+      qs += `neighborhood=${query.neighborhood}`;
     }
 
     return qs;
@@ -43,7 +42,7 @@ export default class DBHelper {
     return fetch(`${DBHelper.DATABASE_URL}/restaurants/${DBHelper.makeQueryString(query)}`).then(res => {
       return res.json().then(json => {
         return idb.cacheCollection('restaurants', json.restaurants).then(() => json.restaurants);
-      })
+      });
     });
   }
 
@@ -94,14 +93,14 @@ export default class DBHelper {
   /**
    * Restaurant page URL.
    */
-  static urlForRestaurant(restaurant) {
+  static urlForRestaurant (restaurant) {
     return (`/restaurant?id=${restaurant.id}`);
   }
 
   /**
    * Restaurant image URL.
    */
-  static imageUrlForRestaurant(restaurant) {
+  static imageUrlForRestaurant (restaurant) {
     return [
       { src: `/img/${restaurant.photograph}.webp`, type: 'image/webp' },
       { src: `/img/${restaurant.photograph}.jpg`, type: 'image/jpg' }
@@ -111,7 +110,7 @@ export default class DBHelper {
   /**
    * Map marker for a restaurant.
    */
-  static createMarkerData(restaurant) {
+  static createMarkerData (restaurant) {
     return {
       position: restaurant.latlng,
       title: restaurant.name,
@@ -136,11 +135,11 @@ export default class DBHelper {
     });
   }
 
-  static postReview({ name, rating, comments, restaurantId }) {
+  static postReview ({ name, rating, comments, restaurantId }) {
     fetch(`${DBHelper.DATABASE_URL}/reviews`, {
       method: 'post',
       body: {
-        name
+        name,
         rating,
         comments,
         restaurant_id: restaurantId

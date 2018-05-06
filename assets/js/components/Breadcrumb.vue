@@ -20,11 +20,12 @@ export default {
     }
   },
   created () {
-    this.$bus.$on('fillBreadcrumb', items => this.items = items);
+    this.$bus.$on('fillBreadcrumb', items => {
+      this.items = items;
+    });
   }
 };
 </script>
-
 
 <style lang="stylus">
 .breadcrumb
@@ -34,7 +35,6 @@ export default {
   font-size: 17px
   margin: 0
   width: 50%
-
 
 /* Display list items side by side */
 .breadcrumb li
@@ -46,18 +46,15 @@ export default {
   color: black
   content: "/\00a0"
 
-
 /* Add a color to all links inside the list */
 .breadcrumb li a
   color: #02437c
   text-decoration: none
 
-
 /* Add a color on mouse-over */
 .breadcrumb li a:hover
   color: #01447e
   text-decoration: underline
-
 
 .breadcrumb li a[aria-current="page"]
   color: #000

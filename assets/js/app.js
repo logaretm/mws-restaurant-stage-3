@@ -34,6 +34,7 @@ Object.defineProperty(Vue.prototype, '$isOnline', {
   }
 });
 
+// eslint-disable-next-line no-new
 new Vue({
   el: '#app',
   router,
