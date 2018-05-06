@@ -22,7 +22,7 @@
 
       <div class="restaurant__reviews-form">
         <h3 class="restaurant__reviews-form-title">Post Review</h3>
-        <review-form :restaurant-id="restaurant.id" :restaurant-name="restaurant.name"></review-form>
+        <review-form @submit="addReview" :restaurant-id="restaurant.id" :restaurant-name="restaurant.name"></review-form>
       </div>
 
       <div class="restaurant__reviews">
@@ -96,6 +96,10 @@ export default {
 
         console.log(err.message);
       });
+    },
+    addReview (review) {
+      // place at the beginning.
+      this.reviews.unshift(review);
     }
   },
   created () {
