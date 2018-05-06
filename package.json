@@ -17,8 +17,8 @@
     "vuex": "^3.0.1"
   },
   "scripts": {
-    "dev": "nodemon server.js",
-    "build:dev": "webpack --config webpack/config.js &&  node scripts/images.js",
+    "dev": "nodemon --watch api --watch config server.js",
+    "build:dev": "webpack --config webpack/config.js && node scripts/images.js",
     "build:prod": "cross-env NODE_ENV=production webpack --config webpack/config.js",
     "build": "npm run build:prod && node scripts/images.js",
     "debug": "node debug app.js",
