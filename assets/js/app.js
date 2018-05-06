@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import App from './App';
+import App from './pages/App';
 import DBHelper from './dbhelper';
 import Store from './store';
 import router from './router';
@@ -25,6 +25,8 @@ window.initMap = () => {
   eventBus.$emit('initMap');
 };
 
+navigator.serviceWorker.register('sw.js');
+
 // define a getter for the online status of the user.
 Object.defineProperty(Vue.prototype, '$isOnline', {
   get () {
@@ -35,8 +37,5 @@ Object.defineProperty(Vue.prototype, '$isOnline', {
 new Vue({
   el: '#app',
   router,
-  created () {
-    navigator.serviceWorker.register('sw.js');
-  },
   render: h => h(App)
 });
