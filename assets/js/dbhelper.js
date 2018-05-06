@@ -119,4 +119,20 @@ export default class DBHelper {
     };
   }
 
+  static favoriteRestaurant (restaurant, isFavorite) {
+    // optimistic update
+    restaurant.is_favorite = isFavorite;
+
+    fetch(`${DBHelper.DATABASE_URL}/restaurants/${restaurant.id}`, {
+      method: 'put',
+      body: {
+        is_favorite: isFavorite
+      }
+    }).then(response => response.json()).then(json => {
+      // update using fresh result
+      restaurant.is_favorite = json.restaurant.is_favorite;
+      // update local cache
+      return idb.cacheItem('restaurants', json.restaurant).then(() => json.restaurant);
+    });
+  }
 }
