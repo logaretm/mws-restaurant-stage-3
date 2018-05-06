@@ -1,19 +1,19 @@
 <template>
-  <form action="" @submit.prevent="onSubmit">
-      <div class="field">
-        <label class="form__label">Name</label>
-        <input class="input" type="text" name="name" placeholder="Your Name" required v-model="name">
-      </div>
-      <div class="field">
-        <label class="form__label">Comments</label>
-        <textarea class="input" name="comments" rows="5" :placeholder="`Describe your experience at ${restaurantName}`" required v-model="comments"></textarea>
-      </div>
-      <div class="field">
-        <label class="form__label">Rating</label>
-        <input class="input" type="numeric" max="5" min="1" step="1" v-model.number="rating">
-      </div>
+  <form action="/api/reviews" @submit.prevent="onSubmit">
+    <div class="field">
+      <label class="form__label">Name</label>
+      <input class="input" type="text" name="name" placeholder="Your Name" required v-model="name">
+    </div>
+    <div class="field">
+      <label class="form__label">Comments</label>
+      <textarea class="input" name="comments" rows="5" :placeholder="`Describe your experience at ${restaurantName}`" required v-model="comments"></textarea>
+    </div>
+    <div class="field">
+      <label class="form__label">Rating</label>
+      <input class="input" type="numeric" max="5" min="1" step="1" v-model.number="rating">
+    </div>
 
-      <button type="submit" class="form__submit">Submit</button>
+    <button type="submit" class="form__submit">Submit</button>
   </form>
 </template>
 
