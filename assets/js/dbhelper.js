@@ -124,9 +124,9 @@ export default class DBHelper {
 
     fetch(`${DBHelper.DATABASE_URL}/restaurants/${restaurant.id}`, {
       method: 'put',
-      body: {
+      body: JSON.stringify({
         is_favorite: isFavorite
-      }
+      })
     }).then(response => response.json()).then(json => {
       // update using fresh result
       restaurant.is_favorite = json.restaurant.is_favorite;
@@ -138,12 +138,12 @@ export default class DBHelper {
   static postReview ({ name, rating, comments, restaurantId }) {
     return fetch(`${DBHelper.DATABASE_URL}/reviews`, {
       method: 'post',
-      body: {
+      body: JSON.stringify({
         name,
         rating,
         comments,
         restaurant_id: restaurantId
-      }
+      })
     }).then(response => response.json()).then(json => {
       // cache the review object.
       return idb.cacheItem('reviews', json.review).then(() => json.review);
