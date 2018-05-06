@@ -135,4 +135,19 @@ export default class DBHelper {
       return idb.cacheItem('restaurants', json.restaurant).then(() => json.restaurant);
     });
   }
+
+  static postReview (restaurant, { name, rating, comments }) {
+    fetch(`${DBHelper.DATABASE_URL}/reviews`, {
+      method: 'post',
+      body: {
+        name
+        rating,
+        comments,
+        restaurant_id: restaurant.id
+      }
+    }).then(response => response.json()).then(json => {
+      // cache the review object.
+      return idb.cacheItem('reviews', json.review).then(() => json.review);
+    });
+  }
 }
