@@ -136,7 +136,7 @@ export default class DBHelper {
   }
 
   static postReview ({ name, rating, comments, restaurantId }) {
-    fetch(`${DBHelper.DATABASE_URL}/reviews`, {
+    return fetch(`${DBHelper.DATABASE_URL}/reviews`, {
       method: 'post',
       body: {
         name,
