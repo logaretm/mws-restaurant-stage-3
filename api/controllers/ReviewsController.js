@@ -10,7 +10,7 @@ module.exports = {
   async index (req, res) {
     const conditions = {};
     Helpers.addProp('restaurant_id', conditions, req.query);
-    const reviews = await Reviews.find(conditions);
+    const reviews = await Reviews.find(conditions).sort('updatedAt DESC');;
 
     res.json({
       reviews
