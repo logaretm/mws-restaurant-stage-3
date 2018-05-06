@@ -2,7 +2,7 @@
   <li class="review__item">
     <div class="review__item__header">
       <h3>{{ review.name }}</h3>
-      <span class="review__item__timestamp">{{ review.date }}</span>
+      <span class="review__item__timestamp">{{ review.updatedAt | prettyDate }}</span>
     </div>
     <div class="review__item__body">
       <span class="review__item__rating">{{ review.rating }}</span>

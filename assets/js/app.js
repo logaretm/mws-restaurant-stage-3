@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import { format } from 'date-fns';
 import App from './App.vue';
 import DBHelper from './dbhelper';
 import Store from './store';
@@ -32,6 +33,12 @@ Object.defineProperty(Vue.prototype, '$isOnline', {
   get () {
     return navigator.onLine;
   }
+});
+
+Vue.filter('prettyDate', (value) => {
+  if (!value) return value;
+
+  return format(value, 'MMM DD, YYYY');
 });
 
 // eslint-disable-next-line no-new
