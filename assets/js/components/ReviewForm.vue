@@ -48,7 +48,7 @@ export default {
         updatedAt: Date.now()
       };
 
-      this.$emit('submitted', review);
+      this.$emit('submit', review);
 
       this.$db.postReview({
         name: this.name,
