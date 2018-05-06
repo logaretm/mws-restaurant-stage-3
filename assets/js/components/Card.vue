@@ -32,7 +32,7 @@ export default {
       return this.$db.imageUrlForRestaurant(this.restaurant);
     }
   }
-}
+};
 </script>
 
 <style lang="stylus">
@@ -75,9 +75,9 @@ export default {
   flex-direction: column
 
 .restaurant__card-title
-  color: #743e00
+  color: #363636
   font-family: 'Open Sans', Arial,sans-serif
-  font-size: 14pt
+  font-size: 1.5rem
   font-weight: 200
   letter-spacing: 0
   line-height: 1.3
@@ -85,9 +85,9 @@ export default {
   text-transform: uppercase
 
 .restaurant__details__link
-  background-color: #f18200
+  background-color: #2366d1
   border: 0px
-  color: #0D0D0D
+  color: #fff
   display: inline-block
   font-size: 12pt
   margin-top: auto
@@ -96,8 +96,8 @@ export default {
   text-decoration: none
   text-transform: uppercase
   &:hover
+    background-color: #164083
     color: #fff
-    background-color: #391e00
 
 @media only screen and (min-width: 1200px)
   .restaurant__card

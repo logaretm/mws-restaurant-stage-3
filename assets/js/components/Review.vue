@@ -49,7 +49,7 @@ export default {
   flex-direction: column
 
 .review__item__rating
-  background-color: #743e00
+  background-color: #2366d1
   color: #fff
   width: fit-content
   font-size: 16px

@@ -40,11 +40,13 @@
 <script>
 import GoogleMap from '../components/Map';
 import Review from '../components/Review';
+import ReviewForm from '../components/ReviewForm';
 
 export default {
   components: {
     GoogleMap,
-    Review
+    Review,
+    ReviewForm
   },
   data: () => ({
     restaurant: null,
@@ -129,6 +131,7 @@ export default {
   flex-direction: column
 
 .restaurant__reviews__title
+.restaurant__reviews-form-title
   font-size: 18pt
   color: #743e00
   margin-top: 20px
