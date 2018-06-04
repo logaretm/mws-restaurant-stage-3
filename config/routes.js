@@ -36,7 +36,6 @@ module.exports.routes = {
   'GET /restaurant': 'ViewsController.app',
   'GET /restaurant.html': 'ViewsController.app', // handle html ext
 
-
   /***************************************************************************
   *                                                                          *
   * Custom routes here...                                                    *
@@ -50,7 +49,6 @@ module.exports.routes = {
   'GET /api/restaurants': 'RestaurantsController.index',
   'GET /api/restaurants/:id': 'RestaurantsController.show',
   'PUT /api/restaurants/:id': 'RestaurantsController.update',
-
 
   'GET /api/reviews': 'ReviewsController.index',
   'POST /api/reviews': 'ReviewsController.create',

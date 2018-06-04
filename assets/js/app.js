@@ -66,5 +66,7 @@ new Vue({
   render: h => h(App),
   mounted () {
     this.$bus.$emit(navigator.onLine ? 'online' : 'offline');
+    // document.body.classList.remove('no-scroll');
+    // document.querySelector('.app__overlay').classList.add('is-done');
   }
 });

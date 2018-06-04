@@ -11,10 +11,36 @@
   <link rel="icon" type="image/png" sizes="32x32" href="img/icons/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="img/icons/favicon-16x16.png">
   <title>Restaurant Reviews</title>
+  <!-- <style>
+    .app__overlay {
+      opacity: 1;
+      width: 100%;
+      height: 100%;
+      background: rgba(243, 243, 243, 1);
+      transition: 250ms all ease-in-out;
+      z-index: 10;
+    }
+
+    .app__overlay.is-done {
+      opacity: 0;
+      display: none;
+      transition: 250ms all ease-in-out;
+    }
+
+    .no-scroll {
+      overflow: hidden;
+    }
+  </style> -->
 </head>
 
-<body>
+<body class="no-scroll">
+  <!-- <div class="app__overlay"></div> -->
   <div id="app"></div>
+  <noscript>
+    <div style="display: flex; justify-content: center; align-items: center;">
+      <h1>This app requires JavaScript in order to work correctly</h1>
+    </div>
+  </noscript>
 </body>
 
 </html>

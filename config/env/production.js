@@ -34,5 +34,7 @@ module.exports = {
   // log: {
   //   level: "silent"
   // }
-
+  sockets: {
+    onlyAllowOrigins: ['http://localhost:3337']
+  }
 };

@@ -6,6 +6,7 @@
   "keywords": [],
   "dependencies": {
     "@babel/plugin-syntax-dynamic-import": "^7.0.0-beta.49",
+    "@sailshq/upgrade": "^1.0.9",
     "date-fns": "^1.29.0",
     "idb": "^2.1.2",
     "include-all": "^4.0.3",
@@ -14,6 +15,9 @@
     "rc": "^1.2.8",
     "sails": "^1.0.2",
     "sails-disk": "^1.0.1",
+    "sails-hook-grunt": "^1.0.8",
+    "sails-hook-orm": "^2.0.1",
+    "sails-hook-sockets": "^1.5.2",
     "vue": "^2.5.16",
     "vue-router": "^3.0.1",
     "vuex": "^3.0.1"
