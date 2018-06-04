@@ -36,5 +36,8 @@ module.exports = {
   // }
   sockets: {
     onlyAllowOrigins: ['http://localhost:3337']
+  },
+  models: {
+    migrate: 'safe'
   }
 };
