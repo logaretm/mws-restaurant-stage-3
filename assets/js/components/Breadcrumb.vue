@@ -1,10 +1,10 @@
 <template>
   <ul class="breadcrumb" aria-label=Breadcrumb>
     <li>
-      <a href="/">Home</a>
+      <router-link to="/">Home</router-link>
     </li>
     <li v-for="item in items" :key="item.url">
-      <a :href="item.url" :aria-current="isCurrent(item.url) ? 'page' : false">{{ item.name }}</a>
+      <router-link :to="item.url" :aria-current="isCurrent(item.url) ? 'page' : false">{{ item.name }}</router-link>
     </li>
   </ul>
 </template>

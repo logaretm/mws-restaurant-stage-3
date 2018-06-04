@@ -1,3 +1,4 @@
+/* eslint-disable no-fallthrough */
 import idb from 'idb';
 
 let dbPromise = null;
@@ -8,13 +9,16 @@ let dbPromise = null;
 export default class IDB {
   static get idb () {
     if (!dbPromise) {
-      dbPromise = idb.open('app-store', 1, upgradeDB => {
+      dbPromise = idb.open('app-store', 2, upgradeDB => {
         switch (upgradeDB.oldVersion) {
           case 0:
             upgradeDB.createObjectStore('restaurants', { keyPath: 'id' });
             upgradeDB.createObjectStore('reviews', { keyPath: 'id' });
             upgradeDB.createObjectStore('neighborhoods');
             upgradeDB.createObjectStore('cuisines');
+          case 1:
+            upgradeDB.createObjectStore('pendingReviews', { keyPath: 'id' });
+            upgradeDB.createObjectStore('pendingFavorites', { keyPath: 'id' });
         }
       });
     }
@@ -33,6 +37,19 @@ export default class IDB {
       return Promise.all(stores.map(store => {
         return transaction.objectStore(store).getAll();
       }));
+    });
+  }
+
+  static removeItem (storeName, id) {
+    if (typeof indexedDB === 'undefined') {
+      return Promise.resolve(false);
+    }
+
+    return this.idb.then(db => {
+      const tx = db.transaction(storeName, 'readwrite');
+      tx.objectStore(storeName).delete(id);
+
+      return tx.complete;
     });
   }
 

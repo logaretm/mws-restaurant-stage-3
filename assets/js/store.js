@@ -4,7 +4,9 @@ const state = {
   restaurants: [],
   reviews: [],
   neighborhoods: [],
-  cuisines: []
+  cuisines: [],
+  pendingReviews: [],
+  pendingFavorites: []
 };
 
 let populated = false;
@@ -18,15 +20,18 @@ export default class Store {
       return Promise.resolve(state);
     }
 
-    return idb.getCachedCollections(['restaurants', 'reviews', 'neighborhoods', 'cuisines']).then(([ restaurants, reviews, neighborhoods, cuisines ]) => {
-      state.restaurants = restaurants;
-      state.reviews = reviews;
-      state.neighborhoods = neighborhoods;
-      state.cuisines = cuisines;
-      populated = true;
-    }).then(() => {
-      return state;
-    });
+    return idb.getCachedCollections(['restaurants', 'reviews', 'neighborhoods', 'cuisines', 'pendingReviews', 'pendingFavorites'])
+      .then(([ restaurants, reviews, neighborhoods, cuisines, pendingReviews, pendingFavorites ]) => {
+        state.restaurants = restaurants;
+        state.reviews = reviews;
+        state.neighborhoods = neighborhoods;
+        state.cuisines = cuisines;
+        state.pendingReviews = pendingReviews;
+        state.pendingFavorites = pendingFavorites;
+        populated = true;
+      }).then(() => {
+        return state;
+      });
   }
 
   static get state () {

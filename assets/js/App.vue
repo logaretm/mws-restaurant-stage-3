@@ -10,7 +10,9 @@
     </header>
 
     <main id="maincontent" :class="{ 'split__view': $route.meta.layout === 'split' }">
-      <router-view></router-view>
+      <transition name="fade">
+        <router-view></router-view>
+      </transition>
     </main>
 
     <alert-group></alert-group>
@@ -151,4 +153,11 @@ nav h1 a
 .footer__full
   width: 100%
   position: relative
+
+.fade-enter-active, .fade-leave-active
+  transition: opacity .5s
+
+.fade-enter, .fade-leave-to
+  opacity: 0
+
 </style>

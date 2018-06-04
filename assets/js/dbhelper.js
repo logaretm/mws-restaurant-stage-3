@@ -121,8 +121,15 @@ export default class DBHelper {
   static favoriteRestaurant (restaurant, isFavorite) {
     // optimistic update
     restaurant.is_favorite = isFavorite;
+    if (!navigator.onLine) {
+      return idb.cacheItem('pendingFavorites', {
+        id: `temp_${Date.now()}`,
+        restaurant,
+        isFavorite
+      });
+    }
 
-    fetch(`${DBHelper.DATABASE_URL}/restaurants/${restaurant.id}`, {
+    return fetch(`${DBHelper.DATABASE_URL}/restaurants/${restaurant.id}`, {
       method: 'put',
       body: JSON.stringify({
         is_favorite: isFavorite
@@ -135,7 +142,47 @@ export default class DBHelper {
     });
   }
 
+  static postPendingReviews () {
+    return idb.getCachedCollection('pendingReviews').then(reviews => {
+      return Promise.all(
+        reviews.map(review => {
+          return DBHelper.postReview(review).then(() => {
+            return idb.removeItem('pendingReviews', review.id);
+          });
+        })
+      );
+    });
+  }
+
+  static postPendingFavorites () {
+    return idb.getCachedCollection('pendingFavorites').then(favorites => {
+      return Promise.all(
+        favorites.map(({ id, restaurant, isFavorite }) => {
+          return DBHelper.favoriteRestaurant(restaurant, isFavorite).then(() => {
+            return idb.removeItem('pendingFavorites', id);
+          });
+        })
+      );
+    });
+  }
+
   static postReview ({ name, rating, comments, restaurantId }) {
+    if (!navigator.onLine) {
+      const review = {
+        id: `temp_${Date.now()}`,
+        name,
+        rating,
+        comments,
+        restaurant_id: restaurantId,
+        created_at: Date.now(),
+        updated_at: Date.now()
+      };
+
+      return idb.cacheItem('pendingReviews', review).then(() => {
+        return review;
+      });
+    }
+
     return fetch(`${DBHelper.DATABASE_URL}/reviews`, {
       method: 'post',
       body: JSON.stringify({

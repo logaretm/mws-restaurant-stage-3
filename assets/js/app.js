@@ -26,6 +26,12 @@ Vue.prototype.$notify = notification => {
   eventBus.$emit('notification', notification);
 };
 
+// sync up the pending data.
+eventBus.$on('online', () => {
+  DBHelper.postPendingReviews();
+  DBHelper.postPendingFavorites();
+});
+
 window.initMap = () => {
   eventBus.$emit('initMap');
 };

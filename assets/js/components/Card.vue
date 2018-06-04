@@ -16,7 +16,7 @@
       <p class="restaurant__card-neighborhood">{{ restaurant.neighborhood }}</p>
       <p class="restaurant__card-address">{{ restaurant.address }}</p>
     </div>
-    <a :href="url" class="restaurant__details__link">View Details</a>
+    <router-link :to="url" class="restaurant__details__link">View Details</router-link>
   </li>
 </template>
 
