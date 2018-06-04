@@ -109,7 +109,7 @@ export default {
   display: flex;
   justify-content: center
   align-items: center
-  transition: 250ms all ease-in-out
+  transition: 150ms all ease-in-out
   transform: translateX(25px)
   svg
     fill: #000
@@ -184,7 +184,11 @@ export default {
     flex-direction: row
   .img__container
     height: 100%
-    width: 35%
+    width: 100%
+    min-width: 100%
+  .restuarnat__card-header
+    height: 100%
+    max-width: 35%
     min-width: 35%
 
   .restaurant__card-address
