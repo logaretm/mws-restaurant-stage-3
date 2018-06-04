@@ -1,5 +1,9 @@
 <template>
-  <form action="/api/reviews" @submit.prevent="onSubmit">
+  <form action="/api/reviews" @submit.prevent="onSubmit" class="reviews__form">
+    <div :class="{ 'reviews__form-overlay': true, 'is-submitting': isSubmitting }">
+      <loader></loader>
+      <p class="reviews__form-message">Submitting Your Review</p>
+    </div>
     <div class="field">
       <label class="form__label">Name</label>
       <input class="input" type="text" name="name" placeholder="Your Name" required v-model="name">
@@ -18,7 +22,12 @@
 </template>
 
 <script>
+import Loader from './Loader';
+
 export default {
+  components: {
+    Loader
+  },
   props: {
     restaurantId: {
       type: [String, Number],
@@ -101,6 +110,10 @@ export default {
   font-size 1rem
   border-radius 2px
 
+@media screen and (max-width: 480px)
+  .form__submit
+    width: 100%
+
 .input
   border 1px solid transparent
   font-size 1rem
@@ -116,4 +129,25 @@ export default {
     border-color #ff3860
   &:valid
     border-color #23d160
+
+.reviews__form
+  position: relative
+
+.reviews__form-overlay
+  opacity: 0
+  background: rgba(243, 243, 243, 0.89)
+  display: flex
+  height: 100%
+  width: 100%
+  align-items: center
+  justify-content: center
+  flex-direction: column
+  position: absolute
+  transition: 250ms all ease-in-out
+  &.is-submitting
+    opacity: 1
+    z-index: 10
+
+.reviews__form-message
+  font-size: 22px
 </style>

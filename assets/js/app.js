@@ -63,5 +63,8 @@ Vue.filter('prettyDate', (value) => {
 new Vue({
   el: '#app',
   router,
-  render: h => h(App)
+  render: h => h(App),
+  mounted () {
+    this.$bus.$emit(navigator.onLine ? 'online' : 'offline');
+  }
 });
