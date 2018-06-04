@@ -520,6 +520,24 @@
         "createdAt": "2018-04-19T14:13:18.859Z",
         "updatedAt": "2018-04-19T14:13:18.859Z",
         "id": 31
+      },
+      {
+        "name": "sadasd",
+        "restaurant_id": "1",
+        "rating": "3",
+        "comments": "dasdasdas",
+        "createdAt": "2018-05-06T18:01:11.359Z",
+        "updatedAt": "2018-05-06T18:01:11.359Z",
+        "id": 32
+      },
+      {
+        "name": "Ahmed",
+        "restaurant_id": "1",
+        "rating": "5",
+        "comments": "My comment!",
+        "createdAt": "2018-05-06T18:03:22.432Z",
+        "updatedAt": "2018-05-06T18:03:22.432Z",
+        "id": 33
       }
     ]
   },
@@ -618,7 +636,7 @@
       "id": 10
     },
     "reviews": {
-      "id": 31
+      "id": 33
     }
   }
 }

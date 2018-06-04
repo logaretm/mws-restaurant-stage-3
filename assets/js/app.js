@@ -5,6 +5,7 @@ import App from './App.vue';
 import DBHelper from './dbhelper';
 import Store from './store';
 import router from './router';
+import eventBus from './events';
 
 // static assets
 import '../manifest.webmanifest';
@@ -16,15 +17,26 @@ Vue.use(VueRouter);
 Vue.prototype.$db = DBHelper;
 
 // use this as an event bus to trigger initMap in vue instances.
-const eventBus = new Vue();
 
 Vue.prototype.$bus = eventBus;
 
 Vue.prototype.$store = Store;
 
+Vue.prototype.$notify = notification => {
+  eventBus.$emit('notification', notification);
+};
+
 window.initMap = () => {
   eventBus.$emit('initMap');
 };
+
+window.addEventListener('online', () => {
+  eventBus.$emit('online');
+});
+
+window.addEventListener('offline', () => {
+  eventBus.$emit('offline');
+});
 
 navigator.serviceWorker.register('sw.js');
 

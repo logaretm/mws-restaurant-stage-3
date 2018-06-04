@@ -55,12 +55,19 @@ export default {
         comments: this.comments,
         rating: this.rating,
         restaurantId: this.restaurantId
-      }).catch(e => {
-        console.log(e);
       }).then(rev => {
         // update id
         review.id = rev.id;
         this.isSubmitting = false;
+        this.$notify({
+          message: 'Your review was submitted successfully!',
+          type: 'success'
+        });
+      }).catch(e => {
+        this.$notify({
+          message: e.message,
+          type: 'error'
+        });
       });
     }
   }

@@ -13,6 +13,7 @@
       <router-view></router-view>
     </main>
 
+    <alert-group></alert-group>
     <footer :class="{ footer: true, footer__full: $route.meta.layout !== 'split' }">
       Copyright (c) 2017
       <a href="/">
@@ -24,11 +25,13 @@
 
 <script>
 import Breadcrumb from './components/Breadcrumb';
+import AlertGroup from './components/AlertGroup';
 
 export default {
   name: 'App',
   components: {
-    Breadcrumb
+    Breadcrumb,
+    AlertGroup
   }
 };
 </script>
