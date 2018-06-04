@@ -1,7 +1,7 @@
 <template>
   <div :class="classes" class="alert" role="alert">
     <p>{{ message }}</p>
-    <a href="#" @click.prevent="$emit('dismiss')" class="alert-icon" :role="iconRole">
+    <a href="#" @click.prevent="$emit('dismiss')" :class="{ 'alert-icon': true, 'disabled': iconRole !== 'button' }" :role="iconRole">
       <icon :icon="icon"></icon>
     </a>
   </div>
@@ -100,5 +100,10 @@ export default {
   &:hover
     svg
       fill: #000
+  &.disabled
+    cursor: default
+    &:hover
+      svg
+        fill: inherit
 
 </style>
