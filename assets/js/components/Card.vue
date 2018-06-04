@@ -1,6 +1,16 @@
 <template>
   <li class="restaurant__card">
-    <async-image :sources="images" :alt="`${restaurant.name} Restaurant in ${restaurant.neighborhood}`" classes="restaurant__card-img"></async-image>
+    <figure class="restuarnat__card-header">
+      <async-image :sources="images" :alt="`${restaurant.name} Restaurant in ${restaurant.neighborhood}`" classes="restaurant__card-img"></async-image>
+      <figcaption class="restaurant__card-overlay">
+        <a :class="{ 'restaurant__card-action': true, 'is-favorite': isFavorite }" href="#" role="button" :title="isFavorite ? 'Remove from favorites' : 'Add to favorites'" @click.prevent="toggleFavorite">
+          <icon :icon="isFavorite ? 'heart' : 'heart-outline'"></icon>
+        </a>
+        <router-link :to="url" class="restaurant__card-action" title="Post a review">
+          <icon icon="review"></icon>
+        </router-link>
+      </figcaption>
+    </figure>
     <div class="restaurant__card__body">
       <h2 class="restaurant__card-title">{{ restaurant.name }}</h2>
       <p class="restaurant__card-neighborhood">{{ restaurant.neighborhood }}</p>
@@ -12,11 +22,13 @@
 
 <script>
 import AsyncImage from './AsyncImage';
+import Icon from './Icon';
 
 export default {
   name: 'restaurant-card',
   components: {
-    AsyncImage
+    AsyncImage,
+    Icon
   },
   props: {
     restaurant: {
@@ -30,6 +42,14 @@ export default {
     },
     images () {
       return this.$db.imageUrlForRestaurant(this.restaurant);
+    },
+    isFavorite () {
+      return this.restaurant.is_favorite;
+    }
+  },
+  methods: {
+    toggleFavorite () {
+      this.$db.favoriteRestaurant(this.restaurant, !this.restaurant.is_favorite);
     }
   }
 };
@@ -39,6 +59,7 @@ export default {
 .restaurant__card
   background-color: #fff
   display: flex
+  position: relative
   flex-direction: column
   border: 0
   font-family: 'Open Sans', Arial,sans-serif
@@ -51,6 +72,50 @@ export default {
   flex-basis: 16.66666667%
   max-width: 16.66666667%
   box-shadow: 0 5px 10px -2px rgba(0, 0, 0, 0.05)
+
+.restuarnat__card-header
+  margin: 0
+  position: relative
+  &:hover
+    .restaurant__card-overlay
+      opacity: 1
+    .restaurant__card-action
+      transform: none
+      &:hover
+        transform: scale(1.1)
+
+.restaurant__card-overlay
+  position: absolute
+  top: 0
+  right: 0
+  bottom: 0
+  left: 0
+  background: rgba(0,0,0,0.8)
+  display: flex
+  justify-content: center
+  align-items: center
+  opacity: 0
+  transition: 250ms all ease-in-out
+
+.restaurant__card-action
+  padding: 0
+  width: 50px
+  height: 50px
+  background: #fff
+  text-align: center
+  border-radius: 200px
+  margin: 0 5px
+  z-index: 2
+  display: flex;
+  justify-content: center
+  align-items: center
+  transition: 250ms all ease-in-out
+  transform: translateX(25px)
+  svg
+    fill: #000
+  &.is-favorite
+    svg
+      fill: hsl(348, 100%, 61%)
 
 .restaurant__card-neighborhood
   color: #515151

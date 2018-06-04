@@ -66,10 +66,6 @@ export default {
   @media screen and (max-width 767px)
     max-width: 50vw
 
-  .alert
-    margin-bottom: 10px
-    padding-right: 30px
-
 .alerts-enter-active, .alerts-leave-active
   transition: opacity 0.5s, transform 0.5s
 
