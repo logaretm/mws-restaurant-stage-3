@@ -173,7 +173,7 @@ export default class DBHelper {
         name,
         rating,
         comments,
-        restaurant_id: restaurantId,
+        restaurantId,
         created_at: Date.now(),
         updated_at: Date.now()
       };

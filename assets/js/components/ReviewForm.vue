@@ -60,7 +60,7 @@ export default {
         review.id = rev.id;
         this.isSubmitting = false;
         this.$notify({
-          message: 'Your review was submitted successfully!',
+          message: `Your review was ${this.$isOnline ? 'submitted' : 'saved'} successfully${this.$isOnline ? '' : ' and will be posted once you are online'}.`,
           type: 'success'
         });
       }).catch(e => {
