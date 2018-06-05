@@ -51,13 +51,7 @@ Let's start with running commands in your terminal, known as command line interf
 # npm run build
 ```
 
-##### Install Sails.js globally
-
-```Install sails global
-# npm i sails -g
-```
-
-###### Start the server
+##### Start the server
 
 ```Start server
 # npm start
