@@ -1,12 +1,14 @@
 <template>
-  <section :class="{ 'side__map__container': layout === 'full' }">
-    <div ref="map" :title="title" role="application" :class="{ 'map': true, 'map__full': layout === 'full' }"></div>
+  <section :class="{ 'map__container': layout !== 'full', 'side__map__container': layout === 'full', 'is-lazy': !isInteractive }">
+    <div class="map__overlay" @click="isInteractive = true" v-if="!isInteractive">
+      <p>Click to intereact with the map</p>
+    </div>
+    <img v-if="!isInteractive && staticMap" :src="staticMap" :alt="title" title="Click to activate map" class="map__img">
+    <div ref="map" :title="title" role="application" :class="{ 'map': true, 'map__full': layout === 'full', 'hidden': !isInteractive }"></div>
   </section>
 </template>
 
 <script>
-// singleton boolean for all instances, to prevent multiple loading of the script tag.
-// useful if this is gonna be a SPA later.
 let loaded = false;
 
 export default {
@@ -33,7 +35,10 @@ export default {
     }
   },
   data: () => ({
-    markersInstances: []
+    markersInstances: [],
+    isLoaded: loaded,
+    isInteractive: false,
+    staticMap: null
   }),
   methods: {
     initMap () {
@@ -43,6 +48,7 @@ export default {
         scrollwheel: false
       });
       loaded = true;
+      this.isLoaded = true;
       this.updateMarkers();
     },
     loadScript () {
@@ -56,6 +62,8 @@ export default {
       document.body.appendChild(script);
     },
     updateMarkers () {
+      this.staticMap = this.makeStaticMapUrl();
+
       if (!loaded) return;
 
       this.markersInstances.forEach(m => m.setMap(null));
@@ -71,11 +79,22 @@ export default {
 
         return marker;
       });
+    },
+    makeStaticMapUrl () {
+      const center = `${this.location.lat},${this.location.lng}`;
+      const size = `600x400`;
+      const markers = this.markers.reduce((carry, marker) => {
+        carry += `|${marker.position.lat},${marker.position.lng}`;
+
+        return carry;
+      }, '');
+      return `https://maps.googleapis.com/maps/api/staticmap?center=${center}&zoom=${this.zoom}&size=${size}&markers=color:red${markers}&key=AIzaSyAlPcdc6Nq5JXLgjx0bpAdPwTA2cevTgIk`;
     }
   },
   watch: {
     markers () {
       // map isn't loaded yet.
+      this.staticMap = this.makeStaticMapUrl();
       if (!loaded) {
         return this.$once('mapLoaded', () => {
           this.updateMarkers();
@@ -83,21 +102,24 @@ export default {
       }
 
       this.updateMarkers();
+    },
+    isInteractive () {
+      const loadCallback = () => {
+        this.initMap();
+        this.$emit('mapLoaded');
+      };
+
+      if (loaded) {
+        loadCallback();
+        return;
+      }
+
+      this.$bus.$once('initMap', loadCallback);
+      this.loadScript();
     }
   },
   mounted () {
-    const loadCallback = () => {
-      this.initMap();
-      this.$emit('mapLoaded');
-    };
-
-    if (loaded) {
-      loadCallback();
-      return;
-    }
-
-    this.$bus.$once('initMap', loadCallback);
-    this.loadScript();
+    this.staticMap = this.makeStaticMapUrl();
   }
 };
 </script>
@@ -109,7 +131,7 @@ export default {
   background-color: #ccc
 
 .side__map__container
-  background: blue none repeat scroll 0 0
+  background: #ccc none repeat scroll 0 0
   height: 87%
   position: fixed
   right: 0
@@ -117,6 +139,12 @@ export default {
   flex-basis: 50%
   max-width: 50%
   width: 50%
+  .map__img
+    height: 100%
+  &.is-lazy
+    &:hover
+      .map__overlay
+        opacity: 1
 
 .map__full
   background-color: #ccc
@@ -145,7 +173,11 @@ export default {
     max-width: 100%
     width: 100%
     height: 300px
-    position: absolute
+    position: relative
+    display: flex
+    justify-content: center
+    align-items: center
+    top: 0
 
 @media only scrren and (max-width: 480px)
   .side__map__container
@@ -153,6 +185,47 @@ export default {
     max-width: 100%
     width: 100%
     height: 300px
-    position: absolute
+    position: relative
+    display: flex
+    justify-content: center
+    align-items: center
+    top: 0
+
+.map__container
+  display: flex
+  justify-content: center
+  align-items: center
+  &.is-lazy
+    position: relative
+    &:hover
+      .map__overlay
+        opacity: 1
+
+.map__img
+  position: absolute
+  max-height: 400px
+
+.hidden
+  opacity: 0
+  cursor: pointer
+
+.map__overlay
+  background: rgba(243, 243, 243, 80)
+  position: absolute
+  cursor: pointer
+  top: 0
+  right: 0
+  bottom: 0
+  left: 0
+  background: rgba(0,0,0,0.8)
+  display: flex
+  justify-content: center
+  align-items: center
+  opacity: 0
+  z-index: 99
+  transition: 250ms all ease-in-out
+  p
+    color: #fff
+    font-size: 14pt
 
 </style>

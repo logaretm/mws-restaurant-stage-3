@@ -178,9 +178,7 @@ export default {
   color: #666
 
 .restaurant__container
-  border-bottom: 1px solid #d9d9d9
-  border-top: 1px solid #fff
-  padding: 140px 40px 30px
+  padding: 40px 40px 30px
   flex-basis: 50%
   max-width: 50%
 
@@ -200,12 +198,12 @@ export default {
   .restaurant__container
     flex-basis: 100%
     max-width: 100%
-    margin-top: 300px
+    margin-top: 0
 
 @media (max-width: 480px)
   .restaurant__container
     flex-basis: 100%
     max-width: 100%
-    margin-top: 300px
+    margin-top: 0
 
 </style>

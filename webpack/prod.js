@@ -1,9 +1,9 @@
-const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 module.exports = {
-  mode: "production",
+  mode: 'production',
   optimization: {
     minimizer: [
       new UglifyJsPlugin({
@@ -16,8 +16,8 @@ module.exports = {
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: "css/app.css",
-      chunkFilename: "[id].css"
+      filename: 'css/app.css',
+      chunkFilename: '[id].css'
     })
   ],
   module: {
@@ -26,17 +26,17 @@ module.exports = {
         test: /\.css$/,
         use: [
           MiniCssExtractPlugin.loader,
-          "css-loader"
+          'css-loader'
         ]
       },
       {
         test: /\.(styl|stylus)$/,
         use: [
           MiniCssExtractPlugin.loader,
-          "css-loader",
-          "stylus-loader"
+          'css-loader',
+          'stylus-loader'
         ]
       }
     ]
   }
-}
+};

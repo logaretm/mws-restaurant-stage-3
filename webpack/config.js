@@ -14,7 +14,7 @@ let config = {
     new VueLoaderPlugin(),
     new CleanWebpackPlugin(['public', 'views'], {
       root: path.resolve(__dirname, '..'),
-      exclude: ['.gitignore', 'favicon.ico'],
+      exclude: ['.gitignore', 'favicon.ico']
     }),
     new HtmlWebpackPlugin({
       title: 'Restaurants Review',
