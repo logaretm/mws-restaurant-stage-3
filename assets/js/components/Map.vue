@@ -139,6 +139,9 @@ export default {
   flex-basis: 50%
   max-width: 50%
   width: 50%
+  display: flex
+  justify-content: center
+  align-items: center
   .map__img
     height: 100%
   &.is-lazy
