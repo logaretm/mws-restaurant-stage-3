@@ -12,7 +12,9 @@
       </figcaption>
     </figure>
     <div class="restaurant__card__body">
-      <h2 class="restaurant__card-title">{{ restaurant.name }}</h2>
+      <h2 class="restaurant__card-title">
+        <router-link :to="url">{{ restaurant.name }}</router-link>
+      </h2>
       <p class="restaurant__card-neighborhood">{{ restaurant.neighborhood }}</p>
       <p class="restaurant__card-address">{{ restaurant.address }}</p>
     </div>
@@ -140,14 +142,16 @@ export default {
   flex-direction: column
 
 .restaurant__card-title
-  color: #363636
   font-family: 'Open Sans', Arial,sans-serif
   font-size: 1.5rem
   font-weight: 200
-  letter-spacing: 0
-  line-height: 1.3
   margin: 20px 0 10px
-  text-transform: uppercase
+  a
+    padding: 0
+    color: #363636
+    letter-spacing: 0
+    line-height: 1.3
+    text-transform: uppercase
 
 .restaurant__details__link
   background-color: #2366d1
