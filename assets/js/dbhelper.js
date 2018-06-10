@@ -174,8 +174,8 @@ export default class DBHelper {
         rating,
         comments,
         restaurantId,
-        created_at: Date.now(),
-        updated_at: Date.now()
+        createdAt: Date.now(),
+        updatedAt: Date.now()
       };
 
       return idb.cacheItem('pendingReviews', review).then(() => {
