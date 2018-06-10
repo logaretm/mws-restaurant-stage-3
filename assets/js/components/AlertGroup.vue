@@ -60,10 +60,10 @@ export default {
   right: 0
   bottom: 0
 
-  @media screen and (max-width: 480px)
+  @media screen and (max-width: 767px)
     max-width: 100%
 
-  @media screen and (max-width 767px)
+  @media screen and (min-width: 768px) and (max-width: 1000px)
     max-width: 50vw
 
 .alerts-enter-active, .alerts-leave-active
