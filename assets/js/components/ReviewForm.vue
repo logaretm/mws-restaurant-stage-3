@@ -144,6 +144,7 @@ export default {
   flex-direction: column
   position: absolute
   transition: 250ms all ease-in-out
+  z-index: -1
   &.is-submitting
     opacity: 1
     z-index: 10
