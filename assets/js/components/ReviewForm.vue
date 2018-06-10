@@ -14,7 +14,7 @@
     </div>
     <div class="field">
       <label class="form__label">Rating</label>
-      <input class="input" type="numeric" max="5" min="1" step="1" v-model.number="rating">
+      <input class="input" type="number" max="5" min="1" step="1" v-model.number="rating">
     </div>
 
     <button type="submit" class="form__submit">Submit</button>
