@@ -57,10 +57,7 @@ Let's start with running commands in your terminal, known as command line interf
 # npm start
 ```
 
-### You should now have access to your API server environment
-
-debug: Environment : development
-debug: Port        : 1337
+Now go to [localhost:1337](http://localhost:1337) to use the website.
 
 ## Endpoints
 
